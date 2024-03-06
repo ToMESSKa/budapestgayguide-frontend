@@ -1,4 +1,4 @@
-import Saunas from "./Saunas";
+import Saunas from "./pages/Saunas";
 import Header from "./Header";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -8,11 +8,7 @@ function Main() {
 
   return (
     <div className="Main">
-      <header className="Main-header">
-        <a className="Main-link">
-          <Header></Header> 
-        </a>
-      </header>
+      <Header></Header>
     </div>
   );
 }

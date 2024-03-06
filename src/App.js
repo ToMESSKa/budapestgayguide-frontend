@@ -1,8 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Main from "./components/Main";
-import Saunas from "./components/Saunas"
-
+import Saunas from "./components/pages/Saunas";
 
 function App() {
   return (

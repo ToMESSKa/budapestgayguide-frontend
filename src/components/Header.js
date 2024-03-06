@@ -1,20 +1,26 @@
-import Main from "../layouts/Main.css"
-import axios from "axios";
+import "../styles/NavigationBar.css";
 import React, { useState, useEffect } from "react";
-import MainTitle from "./HeaderTitle";
-
+import HeaderTitle from "./HeaderTitle";
+import NavigationBar from "./NavigationBar";
+import Saunas from "./pages/Saunas";
+import Bars from "./pages/Bars";
+import Parties from "./pages/Parties";
+import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
 function Header() {
-
   return (
     <div className="Header">
       <header className="Header-header">
-       <HeaderTitle></HeaderTitle>
-       <button>Saunas</button>
-       <button>Clubs</button>
-       <button>Bars</button>
+        <HeaderTitle></HeaderTitle>
+        <NavigationBar></NavigationBar>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/saunas" element={<Saunas />}></Route>
+          <Route path="/parties" element={<Parties />}></Route>
+          <Route path="/bars" element={<Bars />}></Route>
+        </Routes>
       </header>
     </div>
   );
 }
-
 export default Header;

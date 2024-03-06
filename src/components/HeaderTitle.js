@@ -1,14 +1,11 @@
-import Main from "../layouts/Main.css"
+import "../styles/NavigationBar.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 function HeaderTitle() {
-
   return (
-    <div className="Header">
-      <header className="Header-header">
-       BUDAPEST GAY GUIDE
-      </header>
+    <div className="nav">
+      <header className="header-title">BUDAPEST GAY GUIDE</header>
     </div>
   );
 }

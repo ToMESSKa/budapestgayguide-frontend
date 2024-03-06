@@ -1,4 +1,4 @@
-import Main from "../layouts/Main.css"
+
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
