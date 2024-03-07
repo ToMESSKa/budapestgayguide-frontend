@@ -1,23 +1,24 @@
-
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 function Saunas() {
-  const [data, setData] = useState([]);
+  const [saunaData, setSaunaData] = useState([0]);
 
-  const getData = () => {
+  useEffect(() => {
+    getSaunaData();
+  },[]);
+
+  const getSaunaData = () => {
     axios.get("http://localhost:8080/getsaunas").then((response) => {
-      setData(response.data);
+      setSaunaData(response.data);
     });
   };
 
   return (
-    <div className="Main">
-      <header className="Main-header">
-        <a className="Main-link">
-          <button onClick={getData}>Do {data} shit.</button>
-        </a>
-      </header>
+    <div className="Sauna">
+          {saunaData.map((sauna) => (
+            <li key={sauna.sauna_id+345}>{sauna.name}</li>
+          ))}
     </div>
   );
 }
