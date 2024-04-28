@@ -50,7 +50,7 @@ function Header() {
         )}
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/saunas" element={<Saunas />}></Route>
+          <Route path="/saunas" element={<Saunas isTabletOrMobile={isTabletOrMobile} />}></Route>
           <Route path="/parties" element={<Parties />}></Route>
           <Route path="/bars" element={<Bars />}></Route>
           <Route
