@@ -21,7 +21,6 @@ function MobileHeader() {
 
   return (
     <div className="mobile-header">
-      
       <Menu className="mobile-header-menu">
         <a id="home" className="menu-item" href="/">
           Home
@@ -39,8 +38,7 @@ function MobileHeader() {
           Sign In
         </a>
       </Menu>
-      <div className="mobile-header-title"><header>BUDAPEST GAY GUIDE</header></div>
-    </div>
+      <div className="mobile-header-title"><header>BUDAPEST GAY GUIDE</header></div></div>
   );
 }
 

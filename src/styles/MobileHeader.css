@@ -5,13 +5,21 @@
 .mobile-header {
   color: white;
   display: flex;
-  gap: 36px;
+}
+.bm-cross {
+  background: #bdc3c7;
+}
+.bm-cross-button {
+  color: #faf8f8;
+  height: 24px;
+  width: 24px;
 }
 
 .mobile-header-title {
   display: flex;
-  height: 30px;
-  background-color: #333;
+  height: 60px;
+  width: 100%;
+  background-color:#333;
   color: white;
   flex-grow: 1;
   min-width: 0;
@@ -23,31 +31,33 @@
   position: fixed;
   width: 36px;
   height: 30px;
+  left: 15px;
+  top: 15px;
 }
 
 .bm-burger-bars {
-  background: #140000;
-  color: #faf8f8;
+  background: white;
 }
 
 .bm-menu {
-  background: #000000;
-  padding: 1em 1em 1em;
-  font-size: 2em;
-  color: rgb(0, 0, 0);
+  background: #333;
+  padding: 2.5em 1.5em 0;
+  font-size: 2em
 }
 
-/* Wrapper for item list */
 .bm-item-list {
   color: #fafafa;
 }
 
-/* Individual item */
 .bm-item {
   display: inline-block;
 }
 
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+.menu-item {
+  color: white;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
 }
