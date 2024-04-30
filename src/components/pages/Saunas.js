@@ -10,7 +10,8 @@ import { TailSpin } from "react-loader-spinner";
 function Saunas(props) {
   const [saunaData, setSaunaData] = useState([0]);
   const [loading, setLoading] = useState(true);
-  const [showMore, setShowMore] = useState(false);
+  const [saunaInfoToggles, setSaunaInfoToggles] = useState([]);
+  const [moreButton, setMoreButton] = useState("Click to see more");
   const [saunaID, setSaunaID] = useState(false);
 
   useEffect(() => {
@@ -21,13 +22,26 @@ function Saunas(props) {
     axios.get("http://localhost:8080/getsaunas").then((response) => {
       setSaunaData(response.data);
       setLoading(false);
+      createSaunaToggle(response.data);
     });
   };
 
   const getMoreInfo = (event) => {
-    console.log(event.target.getAttribute('data'));
-    setShowMore(!showMore)
-    setSaunaID(parseInt(event.target.getAttribute('data')))
+    const modifiedToggles = saunaInfoToggles.map((obj) => {
+      if (obj.sauna_id === parseInt(event.target.getAttribute("data"))) {
+        return { ...obj, toggle_state: true };
+      }
+      return obj;
+    });
+    setSaunaInfoToggles(modifiedToggles);
+  };
+
+  const createSaunaToggle = (saunas) => {
+    let toggles = [];
+    saunas.map((sauna) =>
+      toggles.push({ sauna_id: sauna.sauna_id, toggle_state: false })
+    );
+    setSaunaInfoToggles(toggles);
   };
 
   return (
@@ -42,7 +56,7 @@ function Saunas(props) {
                 <Col className="flex-item-mobile">{sauna.name}</Col>
                 <Row className="flex-item-mobile-more">
                   <Col data={sauna.sauna_id} onClick={(e) => getMoreInfo(e)}>
-                    Click for more
+                    {moreButton}
                   </Col>
                   <Col>
                     <img
@@ -52,7 +66,38 @@ function Saunas(props) {
                     />
                   </Col>
                 </Row>
-                {showMore ? saunaID === sauna.sauna_id ? <Col className="flex-item-mobile-more">MORE</Col> : "" : ""}
+                {saunaInfoToggles.find(
+                  (toggle) => toggle.sauna_id === sauna.sauna_id
+                ).toggle_state ? (
+                    <Col className="details-mobile">
+                      <Row className="detail-mobile">{sauna.description}</Row>
+                      <Row className="detail-mobile">
+                        website:{" "}
+                        <a href={sauna.website} target="noopener">
+                          {sauna.name}
+                        </a>
+                      </Row>
+                      <Row className="detail-mobile">
+                        address:{" "}
+                        <a
+                          className="location"
+                          href={sauna.location}
+                          target="noopener"
+                        >
+                          {sauna.address}
+                        </a>
+                      </Row>
+                      <Row className="detail-mobile">
+                        <GoogleRating value={sauna.googleRating}></GoogleRating>
+                      </Row>
+                      <Row className="detail-mobile">
+                        <button>Leave a review</button>{" "}
+                        <button>See reviews</button>
+                      </Row>
+                    </Col>
+                ) : (
+                  ""
+                )}
               </Row>
             </Container>
           </div>
