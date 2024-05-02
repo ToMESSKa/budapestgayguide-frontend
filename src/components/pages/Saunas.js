@@ -27,13 +27,14 @@ function Saunas(props) {
   };
 
   const getMoreInfo = (event) => {
-    const modifiedToggles = saunaInfoToggles.map((obj) => {
-      if (obj.sauna_id === parseInt(event.target.getAttribute("data"))) {
-        return { ...obj, toggle_state: true };
-      }
-      return obj;
-    });
-    setSaunaInfoToggles(modifiedToggles);
+    let sauna_id = parseInt(event.target.getAttribute("data"));
+    if (findSaunaToggle(sauna_id).toggle_state) {
+      modifiySaunaToggle(false, sauna_id);
+      setMoreButton("Click to see more");
+    } else {
+      modifiySaunaToggle(true, sauna_id);
+      setMoreButton("Click to see less");
+    }
   };
 
   const createSaunaToggle = (saunas) => {
@@ -44,8 +45,22 @@ function Saunas(props) {
     setSaunaInfoToggles(toggles);
   };
 
+  const findSaunaToggle = (sauna_id) => {
+    return saunaInfoToggles.find((obj) => obj.sauna_id === sauna_id);
+  };
+
+  const modifiySaunaToggle = (toggle_state, sauna_id) => {
+    const modifiedToggles = saunaInfoToggles.map((obj) => {
+      if (obj.sauna_id === sauna_id) {
+        return { ...obj, toggle_state: toggle_state };
+      }
+      return obj;
+    });
+    setSaunaInfoToggles(modifiedToggles);
+  };
+
   return (
-    <a className="Sauna-div">
+    <div className="Sauna-div">
       {loading ? (
         <TailSpin wrapperClass="tail-spin" color="red" />
       ) : props.isTabletOrMobile ? (
@@ -69,32 +84,32 @@ function Saunas(props) {
                 {saunaInfoToggles.find(
                   (toggle) => toggle.sauna_id === sauna.sauna_id
                 ).toggle_state ? (
-                    <Col className="details-mobile">
-                      <Row className="detail-mobile">{sauna.description}</Row>
-                      <Row className="detail-mobile">
-                        website:{" "}
-                        <a href={sauna.website} target="noopener">
-                          {sauna.name}
-                        </a>
-                      </Row>
-                      <Row className="detail-mobile">
-                        address:{" "}
-                        <a
-                          className="location"
-                          href={sauna.location}
-                          target="noopener"
-                        >
-                          {sauna.address}
-                        </a>
-                      </Row>
-                      <Row className="detail-mobile">
-                        <GoogleRating value={sauna.googleRating}></GoogleRating>
-                      </Row>
-                      <Row className="detail-mobile">
-                        <button>Leave a review</button>{" "}
-                        <button>See reviews</button>
-                      </Row>
-                    </Col>
+                  <Col className="details-mobile">
+                    <Row className="detail-mobile">{sauna.description}</Row>
+                    <Row className="detail-mobile">
+                      website:{" "}
+                      <a href={sauna.website} target="noopener">
+                        {sauna.name}
+                      </a>
+                    </Row>
+                    <Row className="detail-mobile">
+                      address:{" "}
+                      <a
+                        className="location"
+                        href={sauna.location}
+                        target="noopener"
+                      >
+                        {sauna.address}
+                      </a>
+                    </Row>
+                    <Row className="detail-mobile">
+                      <GoogleRating value={sauna.googleRating}></GoogleRating>
+                    </Row>
+                    <Row className="detail-mobile">
+                      <button>Leave a review</button>{" "}
+                      <button>See reviews</button>
+                    </Row>
+                  </Col>
                 ) : (
                   ""
                 )}
@@ -139,7 +154,7 @@ function Saunas(props) {
           </Container>
         ))
       )}
-    </a>
+    </div>
   );
 }
 
