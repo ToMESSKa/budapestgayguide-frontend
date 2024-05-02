@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import HeaderTitle from "./HeaderTitle";
 import CustomLink from "./CustomLink";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { slide as Menu } from "react-burger-menu";
 
@@ -18,11 +18,60 @@ function MobileHeader() {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+  const [isOpen, setIsOpen] = useState();
+
+  const handleIsOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeSideBar = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className="mobile-header">
-      <Menu className="mobile-header-menu">
-        <a id="home" className="menu-item" href="/">
+      <Menu
+        isOpen={isOpen}
+        onOpen={handleIsOpen}
+        onClose={handleIsOpen}
+        className="mobile-header-menu"
+      >
+        <NavLink id="home" className="menu-item" onClick={closeSideBar} to="/">
+          Home
+        </NavLink>
+        <NavLink
+          id="saunas"
+          className="menu-item"
+          onClick={closeSideBar}
+          to="/saunas"
+        >
+          Saunas
+        </NavLink>
+        <NavLink
+          id="bars"
+          className="menu-item"
+          onClick={closeSideBar}
+          to="/bars"
+        >
+          Bars
+        </NavLink>
+        <NavLink
+          id="parties"
+          className="menu-item"
+          onClick={closeSideBar}
+          to="/parties"
+        >
+          Parties
+        </NavLink>
+        <NavLink
+          id="signin"
+          className="menu-item"
+          onClick={closeSideBar}
+          to="/signin"
+        >
+          Sign In
+        </NavLink>
+        {/* <a id="home" className="menu-item" href="/">
           Home
         </a>
         <a id="saunas" className="menu-item" href="/saunas">
@@ -36,9 +85,12 @@ function MobileHeader() {
         </a>
         <a id="signin" className="menu-item" href="/signin">
           Sign In
-        </a>
+        </a> */}
       </Menu>
-      <div className="mobile-header-title"><header>BUDAPEST GAY GUIDE</header></div></div>
+      <div className="mobile-header-title">
+        <header>BUDAPEST GAY GUIDE</header>
+      </div>
+    </div>
   );
 }
 
