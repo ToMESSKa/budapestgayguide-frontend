@@ -1,6 +1,4 @@
-import Saunas from "./pages/Saunas";
 import Header from "./Header";
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getUserInfo } from "../api/GetUserInfo";

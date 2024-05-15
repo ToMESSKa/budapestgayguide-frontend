@@ -1,12 +1,8 @@
 import "../styles/MobileHeader.css";
-import axios from "axios";
+
 import React, { useState, useEffect } from "react";
-import HeaderTitle from "./HeaderTitle";
-import CustomLink from "./CustomLink";
-import { Link, NavLink } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
-
 import { useMediaQuery } from "react-responsive";
 
 function MobileHeader() {

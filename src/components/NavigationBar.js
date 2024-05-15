@@ -1,14 +1,7 @@
 import "../styles/NavigationBar.css";
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import HeaderTitle from "./HeaderTitle";
 import CustomLink from "./CustomLink";
-import { Link } from "react-router-dom";
-
-import { slide as Menu } from "react-burger-menu";
-
 import { useMediaQuery } from "react-responsive";
-import BurgerMenu from "./MobileHeader";
 
 function NavigationBar() {
   const isDesktopOrLaptop = useMediaQuery({

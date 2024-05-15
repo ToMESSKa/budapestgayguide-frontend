@@ -2,7 +2,7 @@ import "../styles/NavigationBar.css";
 import React, { useState, useEffect } from "react";
 import HeaderTitle from "./HeaderTitle";
 import NavigationBar from "./NavigationBar";
-import Saunas from "./pages/Saunas";
+import Saunas from "./pages/Saunas/Saunas";
 import Bars from "./pages/Bars";
 import Parties from "./pages/Parties";
 import Home from "./pages/Home";
