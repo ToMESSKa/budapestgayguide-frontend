@@ -6,6 +6,7 @@
   color: white;
   display: flex;
 }
+
 .bm-cross {
   background: #bdc3c7;
 }
@@ -19,7 +20,7 @@
   display: flex;
   height: 60px;
   width: 100%;
-  background-color:#333;
+  background-color: #333;
   color: white;
   flex-grow: 1;
   min-width: 0;
@@ -28,7 +29,7 @@
 }
 
 .bm-burger-button {
-  position: fixed;
+  position:absolute;
   width: 36px;
   height: 30px;
   left: 15px;
@@ -41,8 +42,8 @@
 
 .bm-menu {
   background: #333;
-  padding: 2.5em 1.5em 0;
-  font-size: 2em
+  padding: 1.5em 1em 0;
+  font-size: 2em;
 }
 
 .bm-item-list {
@@ -61,3 +62,4 @@
   position: fixed;
   height: 100%;
 }
+

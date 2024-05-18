@@ -5,45 +5,45 @@ import { TailSpin } from "react-loader-spinner";
 import VenueMobile from "./VenueMobile";
 import VenueDesktop from "./VenueDesktop";
 
-function Bars({ isTabletOrMobile }) {
+function ClubsAndParties({ isTabletOrMobile }) {
   useEffect(() => {
     getBarData();
   }, []);
 
   const [loading, setLoading] = useState(true);
-  const [barData, setBarData] = useState([0]);
-  const [barInfoToggles, setBarInfoToggles] = useState([]);
+  const [clubData, setClubData] = useState([0]);
+  const [clubInfoToggles, setClubInfoToggles] = useState([]);
 
   const getBarData = () => {
-    axios.get("http://localhost:8080/getbars").then((response) => {
+    axios.get("http://localhost:8080/getclubsandparties").then((response) => {
       console.log(response);
-      setBarData(response.data);
+      setClubData(response.data);
       setLoading(false);
-      createBarToggle(response.data);
+      createClubToggle(response.data);
     });
   };
 
-  const createBarToggle = (bars) => {
+  const createClubToggle = (bars) => {
     let toggles = [];
     bars.map((bar) => toggles.push({ venue_id: bar.id, toggle_state: false }));
-    setBarInfoToggles(toggles);
+    setClubInfoToggles(toggles);
   };
 
   return (
-    <div className="bars">
+    <div className="clubs">
       {loading ? (
         <TailSpin wrapperClass="tail-spin" color="red" />
       ) : isTabletOrMobile ? (
         <VenueMobile
-          venueData={barData}
-          venueInfoToggles={barInfoToggles}
-          setVenueInfoToggles={setBarInfoToggles}
+          venueData={clubData}
+          venueInfoToggles={clubInfoToggles}
+          setVenueInfoToggles={setClubInfoToggles}
         ></VenueMobile>
       ) : (
-        <VenueDesktop venueData={barData}></VenueDesktop>
+        <VenueDesktop venueData={clubData}></VenueDesktop>
       )}
     </div>
   );
 }
 
-export default Bars;
+export default ClubsAndParties;

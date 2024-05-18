@@ -3,11 +3,11 @@ import React, { useState, useEffect, useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "../../../styles/Tiles.css";
-import GoogleRating from "../../GoogleRating";
+import "../../styles/Tiles.css";
+import GoogleRating from "../GoogleRating";
 import { TailSpin } from "react-loader-spinner";
-import SaunasDesktop from "./SaunasDesktop";
-import SaunasMobile from "./SaunasMobile";
+import VenueMobile from "./VenueMobile";
+import VenueDesktop from "./VenueDesktop";
 
 function Saunas(props) {
   const [saunaData, setSaunaData] = useState([0]);
@@ -30,23 +30,23 @@ function Saunas(props) {
   const createSaunaToggle = (saunas) => {
     let toggles = [];
     saunas.map((sauna) =>
-      toggles.push({ sauna_id: sauna.id, toggle_state: false })
+      toggles.push({ venue_id: sauna.id, toggle_state: false })
     );
     setSaunaInfoToggles(toggles);
   };
 
   return (
-    <div className="Sauna-div">
+    <div className="saunas">
       {loading ? (
         <TailSpin wrapperClass="tail-spin" color="red" />
       ) : props.isTabletOrMobile ? (
-        <SaunasMobile
-          saunaInfoToggles={saunaInfoToggles}
-          setSaunaInfoToggles={setSaunaInfoToggles}
-          saunaData={saunaData}
-        ></SaunasMobile>
+        <VenueMobile
+          venueInfoToggles={saunaInfoToggles}
+          setVenueInfoToggles={setSaunaInfoToggles}
+          venueData={saunaData}
+        ></VenueMobile>
       ) : (
-        <SaunasDesktop saunaData={saunaData}></SaunasDesktop>
+        <VenueDesktop venueData={saunaData}></VenueDesktop>
       )}
     </div>
   );

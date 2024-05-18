@@ -25,6 +25,7 @@ function MobileHeader() {
   };
 
   return (
+    <nav className="mobile-navbar">
     <div className="mobile-header">
       <Menu
         isOpen={isOpen}
@@ -52,12 +53,12 @@ function MobileHeader() {
           Bars
         </NavLink>
         <NavLink
-          id="parties"
+          id="clubsandparties"
           className="menu-item"
           onClick={closeSideBar}
-          to="/parties"
+          to="/clubsandparties"
         >
-          Parties
+          Clubs & Parties
         </NavLink>
         <NavLink
           id="signin"
@@ -67,26 +68,12 @@ function MobileHeader() {
         >
           Sign In
         </NavLink>
-        {/* <a id="home" className="menu-item" href="/">
-          Home
-        </a>
-        <a id="saunas" className="menu-item" href="/saunas">
-          Saunas
-        </a>
-        <a id="bars" className="menu-item" href="/bars">
-          Bars
-        </a>
-        <a id="parties" className="menu-item" href="/parties">
-          Parties
-        </a>
-        <a id="signin" className="menu-item" href="/signin">
-          Sign In
-        </a> */}
       </Menu>
       <div className="mobile-header-title">
-        <header>BUDAPEST GAY GUIDE</header>
+        <header>BUDAPEST GAYYY GUIDE</header>
       </div>
     </div>
+    </nav>
   );
 }
 

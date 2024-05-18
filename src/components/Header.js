@@ -2,18 +2,17 @@ import "../styles/NavigationBar.css";
 import React, { useState, useEffect } from "react";
 import HeaderTitle from "./HeaderTitle";
 import NavigationBar from "./NavigationBar";
-import Saunas from "./pages/Saunas/Saunas";
+import Saunas from "./pages/Saunas";
 import Bars from "./pages/Bars";
-import Parties from "./pages/Parties";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import { getUserInfo } from "../api/GetUserInfo";
 import { useMediaQuery } from "react-responsive";
 
-import { Row, Col, Container } from "react-bootstrap";
-import BurgerMenu from "./MobileHeader";
 import MobileHeader from "./MobileHeader";
+
+import ClubsAndParties from "./pages/ClubsAndParties";
 
 function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -50,9 +49,18 @@ function Header() {
         )}
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/saunas" element={<Saunas isTabletOrMobile={isTabletOrMobile} />}></Route>
-          <Route path="/parties" element={<Parties />}></Route>
-          <Route path="/bars" element={<Bars />}></Route>
+          <Route
+            path="/saunas"
+            element={<Saunas isTabletOrMobile={isTabletOrMobile} />}
+          ></Route>
+          <Route
+            path="/clubsandparties"
+            element={<ClubsAndParties isTabletOrMobile={isTabletOrMobile} />}
+          ></Route>
+          <Route
+            path="/bars"
+            element={<Bars isTabletOrMobile={isTabletOrMobile} />}
+          ></Route>
           <Route
             path="/signin"
             element={<SignIn isLogin={isLogin} setIsLogin={setIsLogin} />}
