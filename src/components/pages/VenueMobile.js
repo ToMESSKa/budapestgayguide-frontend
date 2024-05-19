@@ -1,17 +1,14 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/Tiles.css";
 import GoogleRating from "../GoogleRating";
 
-
-function VenueMobile({venueData, venueInfoToggles, setVenueInfoToggles}) {
-
-
+function VenueMobile({ venueData, venueInfoToggles, setVenueInfoToggles }) {
   const getMoreInfo = (event) => {
     let venue_id = parseInt(event.target.getAttribute("data"));
-    console.log(venue_id)
+    console.log(venue_id);
     let toggle_state = findVenueToggle(venue_id).toggle_state;
     modifiyVenueToggle(!toggle_state, venue_id);
   };
@@ -30,7 +27,7 @@ function VenueMobile({venueData, venueInfoToggles, setVenueInfoToggles}) {
     setVenueInfoToggles(modifiedToggles);
   };
 
-  return (venueData.map((venue) => (
+  return venueData.map((venue) => (
     <Container className="flex-container-mobile">
       <Row key={venue.id}>
         <Col className="flex-item-mobile">{venue.name}</Col>
@@ -73,7 +70,7 @@ function VenueMobile({venueData, venueInfoToggles, setVenueInfoToggles}) {
         )}
       </Row>
     </Container>
-  )));
+  ));
 }
 
 export default VenueMobile;

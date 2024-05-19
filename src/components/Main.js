@@ -6,6 +6,10 @@ import { getUserInfo } from "../api/GetUserInfo";
 function Main(isLogin) {
   const [data, setData] = useState([]);
 
+  // const url ="https://budapestgayguide-backend.onrender.com"
+  const url ="http://localhost:8080"
+
+
   const navigate = useNavigate();
   const [info, setInfo] = useState({
     email: '',
@@ -25,7 +29,7 @@ function Main(isLogin) {
 
   return (
     <div className="Main">
-      <Header></Header>
+      <Header url ={url}></Header>
     </div>
   );
 }

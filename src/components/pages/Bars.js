@@ -13,9 +13,11 @@ function Bars({ isTabletOrMobile }) {
   const [loading, setLoading] = useState(true);
   const [barData, setBarData] = useState([0]);
   const [barInfoToggles, setBarInfoToggles] = useState([]);
+  // const url ="https://budapestgayguide-backend.onrender.com"
+  const url = "http://localhost:8080";
 
   const getBarData = () => {
-    axios.get("http://localhost:8080/getbars").then((response) => {
+    axios.get(url + "/getbars").then((response) => {
       console.log(response);
       setBarData(response.data);
       setLoading(false);
