@@ -13,8 +13,8 @@ function ClubsAndParties({ isTabletOrMobile }) {
   const [loading, setLoading] = useState(true);
   const [clubData, setClubData] = useState([0]);
   const [clubInfoToggles, setClubInfoToggles] = useState([]);
-  // const url ="https://budapestgayguide-backend.onrender.com"
-  const url ="http://localhost:8080"
+  const url ="https://budapestgayguide-backend.onrender.com"
+  // const url ="http://localhost:8080"
 
   const getBarData = () => {
     axios.get(url + "/getclubsandparties").then((response) => {
