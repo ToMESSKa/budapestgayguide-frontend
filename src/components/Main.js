@@ -17,15 +17,15 @@ function Main(isLogin) {
     lastName: '',
   });
 
-  useEffect(() => {
-    if (!isLogin) navigate('/');
+  // useEffect(() => {
+  //   if (!isLogin) navigate('/');
 
-    const initUserinfo = async () => {
-      const newinfo = await getUserInfo();
-      setInfo(newinfo);
-    };
-    initUserinfo();
-  }, [isLogin]);
+  //   const initUserinfo = async () => {
+  //     const newinfo = await getUserInfo();
+  //     setInfo(newinfo);
+  //   };
+  //   initUserinfo();
+  // }, [isLogin]);
 
   return (
     <div className="Main">

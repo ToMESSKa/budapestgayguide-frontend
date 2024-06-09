@@ -17,13 +17,13 @@ import ClubsAndParties from "./pages/ClubsAndParties";
 function Header() {
   const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {
-    const initLogin = async () => {
-      const name = await getUserInfo();
-      setIsLogin(!!name);
-    };
-    initLogin();
-  }, []);
+  // useEffect(() => {
+  //   const initLogin = async () => {
+  //     const name = await getUserInfo();
+  //     setIsLogin(!!name);
+  //   };
+  //   initLogin();
+  // }, []);
 
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
