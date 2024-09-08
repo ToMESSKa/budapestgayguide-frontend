@@ -14,7 +14,7 @@ function Saunas(props) {
   const [loading, setLoading] = useState(true);
   const [saunaInfoToggles, setSaunaInfoToggles] = useState([]);
   const url = "https://budapestgayguide-backend.onrender.com";
-  // const url ="http://localhost:8080"
+  //const url ="http://localhost:8080"
 
   useEffect(() => {
     getSaunaData();
