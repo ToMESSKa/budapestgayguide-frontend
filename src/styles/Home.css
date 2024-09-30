@@ -1,0 +1,27 @@
+.desktopfiters {
+  padding: 20px;
+}
+
+.mobilefiters {
+  padding: 20px;
+}
+
+
+.mobileeventable {
+  width: 100%; /* Optional: sets the table width */
+  font-family: LatoWeb,Lato,"Helvetica Neue",Helvetica,Arial,sans-serif
+
+}
+
+.mobileeventable, 
+.mobileeventable th, 
+.mobileeventable td {
+  border-bottom: 1px solid rgb(214, 213, 213); /* Sets a single line border */
+  padding: 8px; /* Adds padding for better spacing */
+  border-collapse: collapse; /* Ensures borders are single lines */
+  text-align: start;
+}
+
+
+
+
