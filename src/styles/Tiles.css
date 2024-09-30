@@ -7,7 +7,7 @@
 }
 
 .flex-item {
-  background: rgb(230, 97, 73);
+  background: rgb(139, 130, 129);
   padding: 10px;
   margin-top: 10px;
   margin-right: 5px;
@@ -21,7 +21,7 @@
 
 .flex-item-mobile {
   display: flex;
-  background: rgb(230, 97, 73);
+  background: rgb(139, 130, 129);
   padding-left: 10px;
   padding-top: 10px;
   margin-top: 10px;
@@ -36,7 +36,7 @@
 
 .flex-item-mobile-more {
   display: flex;
-  background: rgb(230, 97, 73);
+  background: rgb(139, 130, 129);
   padding-left: 10px;
   padding-top: 0px;
   padding-right: 10px;
@@ -63,7 +63,7 @@
 }
 
 .details-mobile {
-  background: rgb(230, 97, 73);
+  background: rgb(160, 150, 148);
   padding-left: 10px;
   padding-top: 0px;
   padding-right: 10px;
@@ -98,7 +98,7 @@ a:visited {
 }
 
 .venue-logo-container {
-  background: rgb(230, 97, 73);
+  background: rgb(131, 125, 124);
   padding: 10px;
   margin-top: 10px;
   margin-right: 5px;
