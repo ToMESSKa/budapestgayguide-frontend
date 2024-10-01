@@ -91,7 +91,7 @@ const HomeDesktop = (props) => {
                   ) : (
                     <div
                       style={{
-                        width: "20px", // Same width as the image
+                        width: "40px", // Same width as the image
                         height: "auto", // Set a fixed height (adjust as needed)
                         backgroundColor: "#f0f0f0", // Optional: Placeholder background color
                       }}

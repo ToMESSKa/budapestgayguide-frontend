@@ -65,58 +65,43 @@ const HomeMobile = (props) => {
       </div>
 
       <div className="mobileeventable">
-        <Table className="mobileeventable" striped="columns"  size="sm">
+        <Table className="mobileeventable" striped="columns" size="sm">
           <thead>
             <tr>
-              <th width='20%' >name</th>
-              <th width='20%' >time</th>
-              <th width='20%' >organizer</th>
-              <th width='20%' >Facebook</th>
+              <th width="20%"></th>
+              <th width="20%">name</th>
+              <th width="20%">time</th>
+              <th width="20%">organizer</th>
+              <th width="20%">Facebook</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             {props.filteredEventData.map((event) => (
               <tr>
+                <td>
+                  <img
+                    className="venue-logo-mobile"
+                    src={event.venue.logoURL}
+                    alt="Logo"
+                    style={{
+                      width: "40px", // Set a fixed width
+                      height: "auto", // Maintain aspect ratio
+                      objectFit: "contain", // Ensure the image fits within the box
+                    }}
+                  />
+                </td>
                 <td>{event.name}</td>
                 <td>{new Date(event.time * 1000).toLocaleString()}</td>
-                <td>{event.event_creator}</td>
-                <td>event link</td>
+                <td>{event.venue.name}</td>
+                <td>
+                  <a href={event.url} target="_blank" rel="noopener noreferrer">
+                    Facebook event
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>
         </Table>
-        {/* <Table caption={"event table"} width={'480px'}>
-          <Table.Head>
-            <Table.Row>
-              <Table.ColHeader width='10px'id={"1"}>Name</Table.ColHeader>
-              <Table.ColHeader width='10px'id={"2"}>Location</Table.ColHeader>
-              <Table.ColHeader width='20%'id={"3"}>Time</Table.ColHeader>
-              <Table.ColHeader width='20%'id={"4"}>Organizer</Table.ColHeader>
-              <Table.ColHeader width='20%'id={"4"}>Facebook event</Table.ColHeader>
-            </Table.Row>
-          </Table.Head>
-          <Table.Body>
-            {props.filteredEventData.map((event) => (
-              <Table.Row key={Math.random()}>
-                <Table.Cell width='10px' key={event.id + event.name}>
-                  {event.name}
-                </Table.Cell>
-                <Table.Cell width='10px'key={event.id + event.location}>
-                  {event.location}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.time}>
-                  {new Date(event.time * 1000).toLocaleString()}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.url + event.id}>
-                  {event.event_creator}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.url + event.id}>
-                  Event link
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table> */}
       </div>
     </div>
   );
