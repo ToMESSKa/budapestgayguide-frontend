@@ -46,18 +46,38 @@ function VenueMobile({ venueData, venueInfoToggles, setVenueInfoToggles }) {
           .toggle_state ? (
           <Col className="details-mobile">
             <Row className="detail-mobile">{venue.description}</Row>
-            <Row className="detail-mobile">
-              website:{" "}
-              <a href={venue.website} target="noopener">
-                {venue.name}
-              </a>
-            </Row>
-            <Row className="detail-mobile">
-              address:{" "}
-              <a className="location" href={venue.location} target="noopener">
-                {venue.address}
-              </a>
-            </Row>
+            {venue.website ? (
+              <Row className="detail-mobile">
+                website:{" "}
+                <a href={venue.website} target="noopener">
+                  {venue.name}
+                </a>
+              </Row>
+            ) : null}
+            {venue.address ? (
+              <Row className="detail-mobile">
+                address:{" "}
+                <a href={venue.address} target="noopener">
+                  {venue.address}
+                </a>
+              </Row>
+            ) : null}
+            {venue.facebook ? (
+              <Row className="detail-mobile">
+                facebook:{" "}
+                <a href={venue.facebook} target="noopener">
+                  {venue.name}
+                </a>
+              </Row>
+            ) : null}
+            {venue.instagram ? (
+              <Row className="detail-mobile">
+                instagram:{" "}
+                <a href={venue.instagram} target="noopener">
+                  {venue.name}
+                </a>
+              </Row>
+            ) : null}
             <Row className="detail-mobile">
               <GoogleRating value={venue.googleRating}></GoogleRating>
             </Row>

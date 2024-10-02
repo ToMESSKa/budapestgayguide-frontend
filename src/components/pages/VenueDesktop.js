@@ -22,16 +22,21 @@ function VenueDesktop({venueData}) {
                     {venue.name}
                   </a>
                 </Row>
-                <Row className="details">
-                  address:{" "}
-                  <a
-                    className="location"
-                    href={venue.location}
-                    target="noopener"
-                  >
+                {venue.address ? <Row className="details">
+                  address: <a href={venue.address} target="noopener">
                     {venue.address}
                   </a>
-                </Row>
+                </Row>: null}
+                {venue.facebook ? <Row className="details">
+                  facebook: <a href={venue.facebook} target="noopener">
+                    {venue.name}
+                  </a>
+                </Row>: null}
+                {venue.instagram ? <Row className="details">
+                  instagram: <a href={venue.instagram} target="noopener">
+                    {venue.name}
+                  </a>
+                </Row>: null}
                 <Row className="details">
                   <GoogleRating value={venue.googleRating}></GoogleRating>
                 </Row>

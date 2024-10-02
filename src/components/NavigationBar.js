@@ -20,7 +20,7 @@ function NavigationBar() {
         <CustomLink to="/saunas">Saunas</CustomLink>
         <CustomLink to="/bars">Bars</CustomLink>
         <CustomLink to="/clubsandparties">Clubs & Parties</CustomLink>
-        <CustomLink to="/signin">Sign In</CustomLink>
+        {/* <CustomLink to="/signin">Sign In</CustomLink> */}
       </ul>
     </nav>
   );

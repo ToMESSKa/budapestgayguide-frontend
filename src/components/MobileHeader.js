@@ -60,17 +60,17 @@ function MobileHeader() {
         >
           Clubs & Parties
         </NavLink>
-        <NavLink
+        {/* <NavLink
           id="signin"
           className="menu-item"
           onClick={closeSideBar}
           to="/signin"
         >
           Sign In
-        </NavLink>
+        </NavLink> */}
       </Menu>
       <div className="mobile-header-title">
-        <header>BUDAPEST GAYYY GUIDE</header>
+        <header>BUDAPEST GAY GUIDE</header>
       </div>
     </div>
     </nav>

@@ -48,7 +48,10 @@ function Header() {
           </div>
         )}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route
+            path="/"
+            element={<Home isTabletOrMobile={isTabletOrMobile} />}
+          ></Route>
           <Route
             path="/saunas"
             element={<Saunas isTabletOrMobile={isTabletOrMobile} />}
