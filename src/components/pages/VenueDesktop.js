@@ -16,12 +16,11 @@ function VenueDesktop({venueData}) {
               </Col>
               <Col>
                 <Row className="details">{venue.description}</Row>
-                <Row className="details">
-                  website:{" "}
-                  <a href={venue.website} target="noopener">
+                {venue.website ? <Row className="details">
+                  website: <a href={venue.website} target="noopener">
                     {venue.name}
                   </a>
-                </Row>
+                </Row>: null}
                 {venue.address ? <Row className="details">
                   address: <a href={venue.address} target="noopener">
                     {venue.address}
