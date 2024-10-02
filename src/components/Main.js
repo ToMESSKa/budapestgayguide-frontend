@@ -6,8 +6,8 @@ import { getUserInfo } from "../api/GetUserInfo";
 function Main(isLogin) {
   const [data, setData] = useState([]);
 
-  // const url ="https://budapestgayguide-backend.onrender.com"
-  const url ="http://localhost:8080"
+  const url ="https://budapestgayguide-backend.onrender.com"
+  //const url ="http://localhost:8080"
 
 
   const navigate = useNavigate();

@@ -31,8 +31,8 @@ const Home = (props) => {
     { name: "this week", value: "THIS WEEK" },
   ];
 
-  // const url = "https://budapestgayguide-backend.onrender.com";
-  const url = "http://localhost:8080";
+  const url = "https://budapestgayguide-backend.onrender.com";
+  //const url = "http://localhost:8080";
 
   useEffect(() => {
     getEventData();

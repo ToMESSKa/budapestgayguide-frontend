@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 function HeaderTitle() {
   return (
-      <header className="header-title">BUDAPEST HOLE GUIDE</header>
+      <header className="header-title">BUDAPEST GAY GUIDE</header>
   );
 }
 
