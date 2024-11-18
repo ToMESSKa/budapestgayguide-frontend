@@ -25,8 +25,15 @@
   padding: 8px; /* Adds padding for better spacing */
   border-collapse: collapse; /* Ensures borders are single lines */
   text-align: start;
+  word-wrap: break-word; /* Break long words */
+  white-space: normal;   /* Allows text to wrap */
+  overflow-wrap: break-word; /* Prevents overflow of long words */
 }
 
+.mobileeventable{
+  width: 100%;
+  table-layout: fixed; /* Ensures that the table cells maintain a fixed width */
+}
 
 
 

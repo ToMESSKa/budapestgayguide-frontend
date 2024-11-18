@@ -68,9 +68,9 @@ const HomeMobile = (props) => {
         <Table className="mobileeventable" striped="columns" size="sm">
           <thead>
             <tr>
-              <th width="20%"></th>
+              <th width="14%"></th>
               <th width="20%">name</th>
-              <th width="20%">time</th>
+              <th width="26%">time</th>
               <th width="20%">organizer</th>
               <th width="20%">Facebook</th>
             </tr>
