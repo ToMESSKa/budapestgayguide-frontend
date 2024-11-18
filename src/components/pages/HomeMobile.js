@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 //import { Table } from "@instructure/ui-table";
 import { SimpleSelect, Grid, CheckboxGroup, Checkbox } from "@instructure/ui";
 import "../../styles/Home.css";
 import { useMediaQuery } from "react-responsive";
-import { Table } from "react-bootstrap";
+import { Table, Accordion } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.css";
+import AccordionContext from "react-bootstrap/AccordionContext";
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
+import Card from "react-bootstrap/Card";
 
 const HomeMobile = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -12,6 +17,7 @@ const HomeMobile = (props) => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
+    console.log(props.filteredEventData);
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -19,6 +25,22 @@ const HomeMobile = (props) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const formatTime = (event) => {
+    const date = new Date(event.time * 1000);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
+  function ContextAwareToggle({ eventKey, callback }) {
+    
+    const decoratedOnClick = useAccordionButton(
+      eventKey,
+      () => callback && callback(eventKey)
+    );
+    return <Button onClick={decoratedOnClick} variant="secondary">more</Button>;
+  }
 
   return (
     <div>
@@ -63,22 +85,31 @@ const HomeMobile = (props) => {
           </Grid.Row>
         </Grid>
       </div>
-
-      <div className="mobileeventable">
-        <Table className="mobileeventable" striped="columns" size="sm">
-          <thead>
-            <tr>
-              <th width="14%"></th>
-              <th width="20%">name</th>
-              <th width="26%">time</th>
-              <th width="20%">organizer</th>
-              <th width="20%">Facebook</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.filteredEventData.map((event) => (
-              <tr>
-                <td>
+      <Accordion>
+        <Card eventKey={-1}>
+          <div style={{ display: "flex", width: "100%" }}>
+            <span
+              style={{ width: "15%", textAlign: "left", fontWeight: "bold" }}
+            ></span>
+            <span
+              style={{ width: "32%", textAlign: "left", fontWeight: "bold" }}
+            >
+              name
+            </span>
+            <span
+              style={{ width: "10%", textAlign: "left", fontWeight: "bold" }}
+            >
+              date
+            </span>
+          </div>
+        </Card>
+      </Accordion>
+      <Accordion>
+        {props.filteredEventData.map((event) => (
+          <Card eventKey={event.event_id}>
+            <Card.Header>
+              <div style={{ display: "flex", width: "100%" }}>
+                <span className="header-info" style={{ width: "15%" }}>
                   <img
                     className="venue-logo-mobile"
                     src={event.venue.logoURL}
@@ -89,20 +120,68 @@ const HomeMobile = (props) => {
                       objectFit: "contain", // Ensure the image fits within the box
                     }}
                   />
-                </td>
-                <td>{event.name}</td>
-                <td>{new Date(event.time * 1000).toLocaleString()}</td>
-                <td>{event.venue.name}</td>
-                <td>
-                  <a href={event.url} target="_blank" rel="noopener noreferrer">
-                    Facebook event
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
+                </span>
+                <span className="header-info" style={{ width: "40%" }}>
+                  {event.name}
+                </span>
+                <span className="header-info-date" style={{ width: "45%" }}>
+                  {new Date(event.time * 1000)
+                    .toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                    .toLocaleLowerCase()}
+                </span>
+                <span >
+                  <ContextAwareToggle eventKey={event.event_id}>
+                    Click me!
+                  </ContextAwareToggle>
+                </span>
+              </div>
+            </Card.Header>
+            <Accordion.Collapse eventKey={event.event_id}>
+              <Card.Body>
+                <div style={{ display: "flex", width: "100%" }}>
+                  <span style={{ width: "10%" }}></span>
+                  <span style={{ width: "90%", textAlign: "left" }}>
+                    <table>
+                      <colgroup>
+                        <col style={{ width: "50%" }} />
+                        <col style={{ width: "50%" }} />
+                      </colgroup>
+                      <tr className="time">
+                        <td className="description">start time: </td>
+                        <td>{formatTime(event)} </td>
+                      </tr>
+                      <tr className="facebook-event">
+                        <td className="description">Facebook event: </td>
+                        <td>
+                          <a
+                            href={event.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            link
+                          </a>{" "}
+                        </td>
+                      </tr>
+                      <tr className="location">
+                        <td className="description">location: </td>
+                        <td>{event.location} </td>
+                      </tr>
+                      <tr className="organizer">
+                        <td className="description">organizer: </td>
+                        <td>{event.venue.name} </td>
+                      </tr>
+                    </table>
+                  </span>
+                </div>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        ))}
+      </Accordion>
     </div>
   );
 };

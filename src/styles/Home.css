@@ -6,34 +6,19 @@
   padding: 20px;
 }
 
-
-.mobileeventable {
-  width: 100%; /* Optional: sets the table width */
-  font-family: LatoWeb,Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
-
+td {
+  vertical-align: top;
+}
+.description {
+  font-weight: bold;
 }
 
-.eventtable {
-  color: blue;
-  background-color: rgb(77, 77, 72);
+.header-info{
+  text-align: left;
 }
 
-.mobileeventable, 
-.mobileeventable th, 
-.mobileeventable td {
-  border-bottom: 1px solid rgb(214, 213, 213); /* Sets a single line border */
-  padding: 8px; /* Adds padding for better spacing */
-  border-collapse: collapse; /* Ensures borders are single lines */
-  text-align: start;
-  word-wrap: break-word; /* Break long words */
-  white-space: normal;   /* Allows text to wrap */
-  overflow-wrap: break-word; /* Prevents overflow of long words */
+.header-info-date{
+  text-align: left;
+  margin-left: 10px;
 }
-
-.mobileeventable{
-  width: 100%;
-  table-layout: fixed; /* Ensures that the table cells maintain a fixed width */
-}
-
-
 
