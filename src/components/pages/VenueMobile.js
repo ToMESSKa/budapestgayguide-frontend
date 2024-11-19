@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/Tiles.css";
 import GoogleRating from "../GoogleRating";
+import { useLocation } from "react-router-dom";
+
 
 function VenueMobile({ venueData, venueInfoToggles, setVenueInfoToggles }) {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
+
   const getMoreInfo = (event) => {
     let venue_id = parseInt(event.target.getAttribute("data"));
     console.log(venue_id);
@@ -32,7 +47,7 @@ function VenueMobile({ venueData, venueInfoToggles, setVenueInfoToggles }) {
       <Row key={venue.id}>
         <Col className="flex-item-mobile">{venue.name}</Col>
         <Row className="flex-item-mobile-more">
-          <Col data={venue.id} onClick={(e) => getMoreInfo(e)}>
+          <Col id={venue.id} data={venue.id} onClick={(e) => getMoreInfo(e)}>
             {venueInfoToggles.find((toggle) => toggle.venue_id === venue.id)
               .toggle_state
               ? "Click to see less"

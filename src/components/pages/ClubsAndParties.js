@@ -5,15 +5,19 @@ import { TailSpin } from "react-loader-spinner";
 import VenueMobile from "./VenueMobile";
 import VenueDesktop from "./VenueDesktop";
 
+import { useLocation } from "react-router-dom";
+
 function ClubsAndParties({ isTabletOrMobile }) {
   useEffect(() => {
     getBarData();
   }, []);
 
+  
+
   const [loading, setLoading] = useState(true);
   const [clubData, setClubData] = useState([0]);
   const [clubInfoToggles, setClubInfoToggles] = useState([]);
-  const url ="https://budapestgayguide-backend.onrender.com"
+  const url = "https://budapestgayguide-backend.onrender.com";
   //const url ="http://localhost:8080"
 
   const getBarData = () => {

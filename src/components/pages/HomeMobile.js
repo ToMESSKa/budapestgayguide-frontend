@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-//import { Table } from "@instructure/ui-table";
 import { SimpleSelect, Grid, CheckboxGroup, Checkbox } from "@instructure/ui";
-import "../../styles/Home.css";
-import { useMediaQuery } from "react-responsive";
-import { Table, Accordion } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import "bootstrap/dist/css/bootstrap.css";
-import AccordionContext from "react-bootstrap/AccordionContext";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
+import "../../styles/custom-bootstrap.scss";
+import { Link } from "react-router-dom";
 
 const HomeMobile = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -33,17 +30,35 @@ const HomeMobile = (props) => {
     return `${hours}:${minutes}`;
   };
 
+  const createJumpLink = (eventType) => {
+    switch (eventType) {
+      case "BAR":
+        return "./bars#";
+      case "CLUB":
+        return "./clubsandparties#";
+      case "PARTY":
+        return "./clubsandparties#";
+      case "SAUNA":
+        return "./saunas#";
+      default:
+        return null;
+    }
+  };
+
   function ContextAwareToggle({ eventKey, callback }) {
-    
     const decoratedOnClick = useAccordionButton(
       eventKey,
       () => callback && callback(eventKey)
     );
-    return <Button onClick={decoratedOnClick} variant="secondary">more</Button>;
+    return (
+      <Button onClick={decoratedOnClick} variant="secondary">
+        more
+      </Button>
+    );
   }
 
   return (
-    <div>
+    <div className="custom-bootstrap-scope">
       <div className="mobilefiters">
         <Grid>
           <Grid.Row>
@@ -133,7 +148,7 @@ const HomeMobile = (props) => {
                     })
                     .toLocaleLowerCase()}
                 </span>
-                <span >
+                <span>
                   <ContextAwareToggle eventKey={event.event_id}>
                     Click me!
                   </ContextAwareToggle>
@@ -173,6 +188,14 @@ const HomeMobile = (props) => {
                       <tr className="organizer">
                         <td className="description">organizer: </td>
                         <td>{event.venue.name} </td>
+                      </tr>
+                      <tr className="info-page">
+                        <td className="description">see more: </td>
+                        <td>
+                          <Link to={`${createJumpLink(event.venue.venueType)}${event.venue.id}`}>
+                            Go to target section
+                          </Link>{" "}
+                        </td>
                       </tr>
                     </table>
                   </span>
