@@ -187,14 +187,14 @@ const HomeMobile = (props) => {
                       </tr>
                       <tr className="organizer">
                         <td className="description">organizer: </td>
-                        <td>{event.venue.name} </td>
-                      </tr>
-                      <tr className="info-page">
-                        <td className="description">see more: </td>
                         <td>
-                          <Link to={`${createJumpLink(event.venue.venueType)}${event.venue.id}`}>
-                            Go to target section
-                          </Link>{" "}
+                          <Link
+                            to={`${createJumpLink(event.venue.venueType)}${
+                              event.venue.id
+                            }`}
+                          >
+                            {event.venue.name}
+                          </Link>
                         </td>
                       </tr>
                     </table>
