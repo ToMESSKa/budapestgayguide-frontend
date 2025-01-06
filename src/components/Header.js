@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import { getUserInfo } from "../api/GetUserInfo";
 import { useMediaQuery } from "react-responsive";
+import BudapestPride from "./pages/BudapestPride";
 
 import MobileHeader from "./MobileHeader";
 
@@ -67,6 +68,10 @@ function Header() {
           <Route
             path="/signin"
             element={<SignIn isLogin={isLogin} setIsLogin={setIsLogin} />}
+          ></Route>
+          <Route
+            path="/budapestpride"
+            element={<BudapestPride isLogin={isLogin} setIsLogin={setIsLogin} />}
           ></Route>
         </Routes>
       </header>

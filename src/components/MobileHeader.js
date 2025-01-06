@@ -60,6 +60,14 @@ function MobileHeader() {
         >
           Clubs & Parties
         </NavLink>
+        <NavLink
+          id="budapestpride"
+          className="menu-item"
+          onClick={closeSideBar}
+          to="/budapestpride"
+        >
+          Budapest Pride
+        </NavLink>
         {/* <NavLink
           id="signin"
           className="menu-item"
