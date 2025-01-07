@@ -9,7 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import { getUserInfo } from "../api/GetUserInfo";
 import { useMediaQuery } from "react-responsive";
-import BudapestPride from "./pages/BudapestPride";
+import BudapestPride from "./pages/BudapestPride/BudapestPride";
 
 import MobileHeader from "./MobileHeader";
 
