@@ -9,16 +9,30 @@ export const card = css`
   background-color: #fff;
 `;
 
-
 export const listGroup = css`
   width: 100%;
   text-align: left;
-  overflow: hidden; 
-  word-wrap: break-word; 
+  overflow: hidden;
+  word-wrap: break-word;
   white-space: normal;
 
   .list-group-item {
     padding-left: 20px;
     font-size: 1rem;
+    display: flex;
+    margin-bottom: 8px; 
+
+    span {
+      display: inline-flex; 
+      justify-content: center;
+      align-items: center;
+      margin-right: 8px;
+    
+    }
+    a {
+      display: flex; /* Makes the link behave as a flex container */
+      align-items: center; /* Ensures vertical alignment within the link */
+      text-decoration: none; /* Optional: Style the link */
+    }
   }
 `;
