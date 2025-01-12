@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { TailSpin } from "react-loader-spinner";
-import { card, listGroup } from "./styles";
+import { card, listGroup, cardText } from "./styles";
 
 import ListGroup from "react-bootstrap/ListGroup";
 
@@ -14,24 +14,49 @@ const BudapestPride = ({ isTabletOrMobile }) => {
 
   const [loading, setLoading] = useState(true);
   const [budapestPrideData, setBudapestPrideData] = useState([0]);
+  const [budapestPrideMarch, setBudapestPrideMarch] = useState([0]);
   const [barInfoToggles, setBarInfoToggles] = useState([]);
   const url = "https://budapestgayguide-backend.onrender.com";
   //const url = "http://localhost:8080";
   const [error, setError] = useState(null);
+  const searchTerm = "budapest pride felvonulás";
 
   const getBudapestPrideData = async () => {
+    const obj = [
+      {
+          "event_id": 7618,
+          "name": "30. Budapest Pride Felvonulás",
+          "url": "https://www.facebook.com/events/726484322836829/",
+          "location": "Budapest",
+          "time": 1751112000,
+          "venue": {
+              "id": 18,
+              "name": "Budapest Pride",
+              "description": "gary's biggest LGBT+ event",
+              "website": "https://budapestpride.hu/",
+              "location": null,
+              "address": null,
+              "logoURL": null,
+              "facebook": "https://www.facebook.com/budapestpride/",
+              "instagram": "https://www.instagram.com/budapestpride/",
+              "googleRating": null,
+              "googleMapsPlaceId": null,
+              "venueType": "PARTY"
+          }
+      }
+  ]
     try {
-      setLoading(true); // Ensure loading is true while fetching data
-      setError(null); // Reset the error state
+      setLoading(true)
+      setError(null)
       const response = await axios.get(url + "/getbudapestpride");
-      if (response.data && response.data.length > 0) {
+      if (response.data) {
         setBudapestPrideData(response.data);
-        console.log(response.data);
+        setBudapestPrideMarch(response.data.events.find(event =>
+          event.name.toLowerCase().includes(searchTerm)))
       } else {
-        throw new Error("No data available");
+        console.log('error')
       }
     } catch (err) {
-      console.error(err);
       setError(err.message || "An error occurred while fetching data");
     } finally {
       setLoading(false);
@@ -107,23 +132,23 @@ const BudapestPride = ({ isTabletOrMobile }) => {
             <Card.Subtitle className="mb-2 text-muted">
               The time of the next Budapest Pride is:
             </Card.Subtitle>
-            <Card.Text>
-              {getFormattedTime(budapestPrideData[0])
-                ? getFormattedTime(budapestPrideData[0])
+            <Card.Text css={cardText}>
+              {getFormattedTime(budapestPrideMarch)
+                ? getFormattedTime(budapestPrideMarch)
                 : "the next hasn't been announced yet"}
             </Card.Text>
             <ListGroup css={listGroup} variant="flush">
               <ListGroup.Item>
                 <span>{websiteIcon()}</span>
-                <a href={budapestPrideData[0].venue.website}>website</a>
+                <a href={budapestPrideData.website}>website</a>
               </ListGroup.Item>
               <ListGroup.Item>
                 <span>{instagramIcon()}</span>
-                <a href={budapestPrideData[0].venue.instagram}>instagram</a>
+                <a href={budapestPrideData.instagram}>instagram</a>
               </ListGroup.Item>
               <ListGroup.Item>
                 <span>{facebookEventIcon()}</span>
-                <a href={budapestPrideData[0].url}>facebook event</a>
+                <a href={budapestPrideMarch.url}>facebook event</a>
               </ListGroup.Item>
             </ListGroup>
           </Card.Body>

@@ -9,6 +9,11 @@ export const card = css`
   background-color: #fff;
 `;
 
+export const cardText = css`
+  font-size: 1.25rem;
+  font-weight: bold;
+`;
+
 export const listGroup = css`
   width: 100%;
   text-align: left;
