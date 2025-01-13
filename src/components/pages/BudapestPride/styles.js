@@ -7,11 +7,18 @@ export const card = css`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #fff;
+  padding: 10px;
 `;
 
 export const cardText = css`
   font-size: 1.25rem;
   font-weight: bold;
+`;
+
+export const cardTitle = css`
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 10px;
 `;
 
 export const listGroup = css`
