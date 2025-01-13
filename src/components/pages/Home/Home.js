@@ -13,12 +13,14 @@ const Home = (props) => {
     { name: "bar event", value: "BAR" },
     { name: "sauna event", value: "SAUNA" },
     { name: "club or party event", value: "CLUBPARTY" },
+    { name: "Budapest Pride event", value: "PRIDE" },
   ];
 
   const [selectedEventTypeOptions, setSelectedEventTypeOptions] = useState([
     "BAR",
     "SAUNA",
     "CLUBPARTY",
+    "PRIDE"
   ]);
 
   const [selectedDateOption, setSelectedDateOption] = useState("ANY TIME");
@@ -71,9 +73,9 @@ const Home = (props) => {
       const eventDay = eventDate.toISODate();
       if (date === "ANY TIME") {
         const venueMatches =
-          venueTypes.includes(event.venue.venueType) ||
+          venueTypes.some((type) => event.eventTypes.includes(type)) ||
           (venueTypes.includes("CLUBPARTY") &&
-            ["CLUB", "PARTY"].includes(event.venue.venueType));
+            event.eventTypes.some((type) => ["CLUB", "PARTY"].includes(type))) 
         return venueMatches;
       }
       const selectedDates = getDatesForCategory(date);
@@ -85,9 +87,9 @@ const Home = (props) => {
         return eventDay === selectedDay;
       });
       const venueMatches =
-        venueTypes.includes(event.venue.venueType) ||
+        venueTypes.some((type) => event.eventTypes.includes(type)) ||
         (venueTypes.includes("CLUBPARTY") &&
-          ["CLUB", "PARTY"].includes(event.venue.venueType));
+          event.eventTypes.some((type) => ["CLUB", "PARTY"].includes(type)));
       return dateMatches && venueMatches;
     });
   };

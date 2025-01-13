@@ -4,7 +4,7 @@ import { TailSpin } from "react-loader-spinner";
 import { Table } from "@instructure/ui-table";
 import { SimpleSelect, Grid, CheckboxGroup, Checkbox } from "@instructure/ui";
 import { setRef } from "@material-ui/core";
-import "../../styles/Home.css";
+import "../../../styles/Home.css";
 
 const HomeDesktop = (props) => {
   return (

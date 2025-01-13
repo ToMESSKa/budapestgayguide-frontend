@@ -4,7 +4,7 @@ import HeaderTitle from "./HeaderTitle";
 import NavigationBar from "./NavigationBar";
 import Saunas from "./pages/Saunas";
 import Bars from "./pages/Bars";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import { getUserInfo } from "../api/GetUserInfo";

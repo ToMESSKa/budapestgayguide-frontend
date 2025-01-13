@@ -137,8 +137,8 @@ const BudapestPride = ({ isTabletOrMobile }) => {
               <Card.Title css={cardTitle}>Budapest Pride</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 {budapestPrideMarch
-                  ? "The time of the next Budapest Pride is:"
-                  : "The date of the next Budapest Pride has not been announced yet. Get back later or check out the official links below."}
+                  ? "The time of the next Budapest Pride Parade is:"
+                  : "The date of the next Budapest Pride Parade has not been announced yet. Get back later or check out the official links below."}
               </Card.Subtitle>
               <Card.Text css={cardText}>
                 {budapestPrideMarch && getFormattedTime(budapestPrideMarch)}
