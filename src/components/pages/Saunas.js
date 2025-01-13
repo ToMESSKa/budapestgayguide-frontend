@@ -6,8 +6,8 @@ import Col from "react-bootstrap/Col";
 import "../../styles/Tiles.css";
 import GoogleRating from "../GoogleRating";
 import { TailSpin } from "react-loader-spinner";
-import VenueMobile from "./VenueMobile";
-import VenueDesktop from "./VenueDesktop";
+import VenueMobile from "./Venue/VenueMobile";
+import VenueDesktop from "./Venue/VenueDesktop";
 
 function Saunas(props) {
   const [saunaData, setSaunaData] = useState([0]);
@@ -43,6 +43,7 @@ function Saunas(props) {
         <TailSpin wrapperClass="tail-spin" color="red" />
       ) : props.isTabletOrMobile ? (
         <VenueMobile
+        title={"SAUNAS"} 
           venueInfoToggles={saunaInfoToggles}
           setVenueInfoToggles={setSaunaInfoToggles}
           venueData={saunaData}

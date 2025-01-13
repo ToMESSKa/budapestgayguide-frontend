@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 import { TailSpin } from "react-loader-spinner";
-import VenueMobile from "./VenueMobile";
-import VenueDesktop from "./VenueDesktop";
+import VenueMobile from "./Venue/VenueMobile";
+import VenueDesktop from "./Venue/VenueDesktop";
 
 function Bars({ isTabletOrMobile }) {
   useEffect(() => {
@@ -37,6 +37,7 @@ function Bars({ isTabletOrMobile }) {
         <TailSpin wrapperClass="tail-spin" color="red" />
       ) : isTabletOrMobile ? (
         <VenueMobile
+        title={"BARS"} 
           venueData={barData}
           venueInfoToggles={barInfoToggles}
           setVenueInfoToggles={setBarInfoToggles}

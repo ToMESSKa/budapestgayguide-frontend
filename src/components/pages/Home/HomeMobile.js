@@ -1,14 +1,32 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { SimpleSelect, Grid, CheckboxGroup, Checkbox } from "@instructure/ui";
-import { Accordion } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+//import { Accordion } from "react-bootstrap";
+//import Button from "react-bootstrap/Button";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
-import "../../../styles/custom-bootstrap.scss";
+//import "../../../styles/custom-bootstrap.scss";
 import { Link } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
-import { card, listGroup, cardText, cardTitle } from "./styles";
+import {
+  card,
+  listGroup,
+  cardText,
+  cardTitle,
+  eventImage,
+  accordion,
+  accordionSummary,
+  cardBody,
+} from "./styles";
+import Accordion from "@mui/material/Accordion";
+import AccordionActions from "@mui/material/AccordionActions";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Button from "@mui/material/Button";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const HomeMobile = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -168,6 +186,32 @@ const HomeMobile = (props) => {
     );
   };
 
+  const typeIcon = () => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-bookmarks"
+        viewBox="0 0 16 16"
+      >
+        <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1z" />
+        <path d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1" />
+      </svg>
+    );
+  };
+
+  const nameIcon = () => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+</svg>
+    );
+  };
+
+  
+
   return (
     <div className="custom-bootstrap-scope">
       <div className="mobilefiters">
@@ -211,7 +255,79 @@ const HomeMobile = (props) => {
           </Grid.Row>
         </Grid>
       </div>
-      <Accordion>
+      {props.filteredEventData.map((event) => (
+        <Accordion css={accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+          >
+            <span className="header-info" css={eventImage}>
+              <img
+                className="venue-logo-mobile"
+                src={event.venue.logoURL}
+                alt="Logo"
+                style={{
+                  width: "40px",
+                  height: "auto",
+                  objectFit: "contain",
+                }}
+              />
+            </span>
+            <ListGroup css={listGroup} variant="flush">
+              <ListGroup.Item>
+                <span>{nameIcon()}</span>
+                <div css={cardText}>{event.name}</div>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <span>{facebookEventIcon()}</span>
+                <span>
+                  {new Date(event.time * 1000)
+                    .toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                    .toLocaleLowerCase()}
+                </span>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <span>{typeIcon()}</span>
+                <span>{event.eventTypes} event</span>
+              </ListGroup.Item>
+            </ListGroup>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Card css={card}>
+              <Card.Body css={cardBody}>
+                <ListGroup css={listGroup} variant="flush">
+                  <ListGroup.Item>
+                    <span>{timeIcon()}</span>
+                    <div>{formatTime(event)}</div>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <span>{facebookEventIcon()}</span>
+                    <a href={event.url}>Facebook event</a>
+                  </ListGroup.Item>
+
+                  <ListGroup.Item>
+                    <span>{locationIcon()}</span>
+                    <div>{event.location}</div>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <span>{organizerIcon()}</span>
+                    <a href={createJumpLink(event.venue.venueType)}>
+                      {event.venue.name}
+                    </a>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+
+      {/* <Accordion>
         <Card eventKey={-1}>
           <div style={{ display: "flex", width: "100%" }}>
             <span
@@ -295,7 +411,7 @@ const HomeMobile = (props) => {
             </Accordion.Collapse>
           </Card>
         ))}
-      </Accordion>
+      </Accordion> */}
     </div>
   );
 };

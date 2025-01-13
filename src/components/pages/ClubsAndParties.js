@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 import { TailSpin } from "react-loader-spinner";
-import VenueMobile from "./VenueMobile";
-import VenueDesktop from "./VenueDesktop";
+import VenueMobile from "./Venue/VenueMobile";
+import VenueDesktop from "./Venue/VenueDesktop";
 
 import { useLocation } from "react-router-dom";
 
@@ -41,6 +41,7 @@ function ClubsAndParties({ isTabletOrMobile }) {
         <TailSpin wrapperClass="tail-spin" color="red" />
       ) : isTabletOrMobile ? (
         <VenueMobile
+        title={"CLUBS & PARTIES"} 
           venueData={clubData}
           venueInfoToggles={clubInfoToggles}
           setVenueInfoToggles={setClubInfoToggles}

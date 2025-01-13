@@ -6,6 +6,7 @@ export const card = css`
   border-radius: 8px;
   background-color: #fff;
   padding-top: 0px;
+
 `;
 
 export const accordion = css`
