@@ -68,4 +68,44 @@ export const listGroup = css`
       }
     }
   }
+    
+`;
+
+export const listGroupForEvents = css`
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+  white-space: normal;
+  margin-bottom: 10px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
+
+
+  .list-group-item {
+    font-size: 1rem;
+    display: flex;
+    padding: 2px;
+
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 8px;
+    }
+    a {
+      display: flex; /* Makes the link behave as a flex container */
+      align-items: center; /* Ensures vertical alignment within the link */
+      text-decoration: none; /* Optional: Style the link */
+      color: #007bff; /* Normal blue color */
+
+      &:hover {
+        text-decoration: underline; /* Optional: Adds underline on hover */
+      }
+
+      &:visited {
+        color: #0056b3; /* Optional: Visited link color */
+      }
+    }
+  }
+    
 `;

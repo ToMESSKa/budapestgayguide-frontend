@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 import {
@@ -11,6 +11,7 @@ import {
   accordion,
   accordionSummary,
   cardBody,
+  listGroupForEvents
 } from "./styles";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -24,16 +25,33 @@ function VenueMobile({
   setVenueInfoToggles,
   title,
 }) {
-  const location = useLocation();
+  const { hash } = useLocation();
+  const [openAccordion, setOpenAccordion] = useState(0);
 
   useEffect(() => {
-    if (location.hash) {
-      const element = document.getElementById(location.hash.substring(1));
+    if (hash) {
+      const accordionId = hash.replace("#", "");
+      const element = document.getElementById(accordionId);
       if (element) {
+        setOpenAccordion(accordionId);
         element.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [location]);
+  }, [hash]);
+
+  const handleChange = (panel) => {
+    setOpenAccordion(String(panel) === openAccordion ? false : String(panel));
+  };
+
+  const formatDate = (event) => {
+    return new Date(event.time * 1000)
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+      .toLocaleLowerCase();
+  };
 
   const timeIcon = () => {
     return (
@@ -194,7 +212,12 @@ function VenueMobile({
     <div>
       <div css={cardTitle}>{title}</div>
       {venueData.map((venue) => (
-        <Accordion css={accordion}>
+        <Accordion
+          css={accordion}
+          id={venue.id}
+          expanded={openAccordion === String(venue.id)}
+          onChange={() => handleChange(venue.id)}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
@@ -226,22 +249,61 @@ function VenueMobile({
             <Card css={card}>
               <Card.Body css={cardBody}>
                 <ListGroup css={listGroup} variant="flush">
-                  { venue.website && <ListGroup.Item>
-                    <span>{websiteIcon()}</span>
-                    <a href={venue.website}>website</a>
-                  </ListGroup.Item>}
-                  { venue.location &&<ListGroup.Item>
-                    <span>{locationIcon()}</span>
-                    <span>{venue.address}</span>
-                  </ListGroup.Item>}
-                  { venue.facebook && <ListGroup.Item>
-                    <span>{facebookIcon()}</span>
-                    <a href={venue.facebook}>facebook</a>
-                  </ListGroup.Item>}
-                  { venue.instagram && <ListGroup.Item>
-                    <span>{instagramIcon()}</span>
-                    <a href={venue.instagram}>instagram</a>
-                  </ListGroup.Item>}
+                  {venue.website && (
+                    <ListGroup.Item>
+                      <span>{websiteIcon()}</span>
+                      <a href={venue.website}>website</a>
+                    </ListGroup.Item>
+                  )}
+                  {venue.location && (
+                    <ListGroup.Item>
+                      <span>{locationIcon()}</span>
+                      <span>{venue.address}</span>
+                    </ListGroup.Item>
+                  )}
+                  {venue.facebook && (
+                    <ListGroup.Item>
+                      <span>{facebookIcon()}</span>
+                      <a href={venue.facebook}>facebook</a>
+                    </ListGroup.Item>
+                  )}
+                  {venue.instagram && (
+                    <ListGroup.Item>
+                      <span>{instagramIcon()}</span>
+                      <a href={venue.instagram}>instagram</a>
+                    </ListGroup.Item>
+                  )}
+                  {venue.events.length > 0 && (
+                    <ListGroup.Item>
+                      <Accordion>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          upcoming events
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          {venue.events.map((event) => (
+                            <ListGroup css={listGroupForEvents} variant="flush">
+                              <ListGroup.Item css={cardText}>
+                                <span>{nameIcon()}</span>
+                                <div>{event.name}</div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <span>{facebookEventIcon()}</span>
+                                <a href={event.url}>facebook event</a>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <span>{timeIcon()}</span>
+                                <div>{formatDate(event)}</div>
+                              </ListGroup.Item>
+                            </ListGroup>
+                          ))}
+                        </AccordionDetails>
+                      </Accordion>
+                    </ListGroup.Item>
+                  )}
                 </ListGroup>
               </Card.Body>
             </Card>
