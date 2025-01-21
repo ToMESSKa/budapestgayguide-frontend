@@ -20,7 +20,7 @@ const Home = (props) => {
     "BAR",
     "SAUNA",
     "CLUBPARTY",
-    "PRIDE"
+    "PRIDE",
   ]);
 
   const [selectedDateOption, setSelectedDateOption] = useState("ANY TIME");
@@ -75,7 +75,7 @@ const Home = (props) => {
         const venueMatches =
           venueTypes.some((type) => event.eventTypes.includes(type)) ||
           (venueTypes.includes("CLUBPARTY") &&
-            event.eventTypes.some((type) => ["CLUB", "PARTY"].includes(type))) 
+            event.eventTypes.some((type) => ["CLUB", "PARTY"].includes(type)));
         return venueMatches;
       }
       const selectedDates = getDatesForCategory(date);
@@ -151,6 +151,23 @@ const Home = (props) => {
     return startOfWeekend;
   };
 
+  const formatDate = (event) => {
+    return new Date(event.time * 1000)
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+      .toLocaleLowerCase();
+  };
+
+  const formatTime = (event) => {
+    const date = new Date(event.time * 1000);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   return (
     <div>
       {loading ? (
@@ -162,6 +179,8 @@ const Home = (props) => {
           filterEventsByVenueType={filterEventsByVenueType}
           eventDateOptions={eventDateOptions}
           filteredEventData={filteredEventData}
+          formatDate={formatDate}
+          formatTime={formatTime}
         ></HomeMobile>
       ) : (
         <HomeDesktop
@@ -170,6 +189,8 @@ const Home = (props) => {
           filterEventsByVenueType={filterEventsByVenueType}
           eventDateOptions={eventDateOptions}
           filteredEventData={filteredEventData}
+          formatDate={formatDate}
+          formatTime={formatTime}
         ></HomeDesktop>
       )}
     </div>

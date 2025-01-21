@@ -19,14 +19,10 @@ import {
   cardBody,
 } from "./styles";
 import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Button from "@mui/material/Button";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 
 const HomeMobile = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -44,22 +40,6 @@ const HomeMobile = (props) => {
     };
   }, []);
 
-  const formatTime = (event) => {
-    const date = new Date(event.time * 1000);
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    return `${hours}:${minutes}`;
-  };
-
-  const formatDate = (event) => {
-    return new Date(event.time * 1000)
-      .toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      })
-      .toLocaleLowerCase();
-  };
 
   const createJumpLink = (venue) => {
     switch (venue.venueType) {
@@ -77,18 +57,6 @@ const HomeMobile = (props) => {
         return null;
     }
   };
-
-  function ContextAwareToggle({ eventKey, callback }) {
-    const decoratedOnClick = useAccordionButton(
-      eventKey,
-      () => callback && callback(eventKey)
-    );
-    return (
-      <Button onClick={decoratedOnClick} variant="secondary">
-        more
-      </Button>
-    );
-  }
 
   const timeIcon = () => {
     return (
@@ -298,7 +266,7 @@ const HomeMobile = (props) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <span>{facebookEventIcon()}</span>
-                <span>{formatDate(event)}</span>
+                <span>{props.formatDate(event)}</span>
               </ListGroup.Item>
               <ListGroup.Item>
                 <span>{typeIcon()}</span>
@@ -312,7 +280,7 @@ const HomeMobile = (props) => {
                 <ListGroup css={listGroup} variant="flush">
                   <ListGroup.Item>
                     <span>{timeIcon()}</span>
-                    <div>{formatTime(event)}</div>
+                    <div>{props.formatTime(event)}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <span>{facebookEventIcon()}</span>

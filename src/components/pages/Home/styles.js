@@ -2,6 +2,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
+
 export const card = css`
   border-radius: 8px;
   background-color: #fff;
@@ -12,6 +13,34 @@ export const accordion = css`
   margin: 10px 10px 10px 10px !important;
 `;
 
+export const accordionDesktop = css`
+  margin: 10px 10px 10px 10px !important;
+  width: 70%;
+  text-wrap: pretty;
+`;
+
+export const filter = css`
+  margin: 30px;
+`;
+
+export const filters = css`
+  display: flex;
+  flex-direction: column;
+  min-width: 15%;
+`;
+
+export const homeContainer = css`
+  margin: 20px;
+  font-family: 'Ubuntu';
+ 
+`;
+
+export const heading = css`
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  width: 70%;
+`;
 
 export const cardText = css`
   font-size: 1.25rem;
@@ -40,11 +69,15 @@ export const listGroup = css`
   text-align: left;
   overflow: hidden;
   white-space: normal;
+  padding: 2%;
 
   .list-group-item {
     font-size: 1rem;
     display: flex;
     padding: 2px;
+    max-width: 100%
+    text-wrap: wrap;
+    overflow-wrap: break-word;
 
     span {
       display: inline-flex;

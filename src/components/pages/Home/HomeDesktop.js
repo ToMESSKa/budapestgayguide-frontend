@@ -1,125 +1,173 @@
+/** @jsxImportSource @emotion/react */
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { Table } from "@instructure/ui-table";
-import { SimpleSelect, Grid, CheckboxGroup, Checkbox } from "@instructure/ui";
+import { InstUISettingsProvider } from "@instructure/ui";
+import Card from "@mui/material/Card";
+import {
+  SimpleSelect,
+  Grid,
+  CheckboxGroup,
+  Checkbox,
+  Heading,
+  GridRow,
+} from "@instructure/ui";
 import { setRef } from "@material-ui/core";
-import "../../../styles/Home.css";
+import {
+  card,
+  listGroup,
+  cardText,
+  cardTitle,
+  eventImage,
+  accordion,
+  cardBody,
+  accordionDesktop,
+  heading,
+  filters,
+  homeContainer,
+  filter,
+} from "./styles";
+
+import {
+  TimeIcon,
+  NameIcon,
+  FacebookEventIcon,
+  TypeIcon,
+  LocationIcon,
+  OrganizerIcon,
+} from "../../icons/Icons";
+
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import ListGroup from "react-bootstrap/ListGroup";
 
 const HomeDesktop = (props) => {
   return (
-    <div>
-      <div className="desktopfiters">
-        <Grid>
-          <Grid.Row>
-            <Grid.Col width={2}>
-              <CheckboxGroup
-                name="event type"
-                defaultValue={["BAR", "SAUNA", "CLUBPARTY"]}
-                onChange={props.filterEventsByVenueType}
-                description="select event type"
-              >
-                {props.eventTypeOptions.map((option, index) => (
-                  <Checkbox
-                    label={option.name}
-                    id={`opt-${index}`}
-                    value={option.value}
-                    key={option.name}
-                  />
-                ))}
-              </CheckboxGroup>
-            </Grid.Col>
-            <Grid.Col width={2}>
-              <SimpleSelect
-                renderLabel="select date for event"
-                width="200px"
-                onChange={props.filterEventsByDate}
-                defaultValue="ANY TIME"
-              >
-                {props.eventDateOptions.map((option, index) => (
-                  <SimpleSelect.Option
-                    key={index}
-                    id={`opt-${index}`}
-                    value={option.value}
-                  >
-                    {option.name}
-                  </SimpleSelect.Option>
-                ))}
-              </SimpleSelect>
-            </Grid.Col>
-          </Grid.Row>
-        </Grid>
-      </div>
-
-      <div className="eventtable">
-        <Table caption={"event table"}>
-          <Table.Head>
-            <Table.Row>
-              <Table.ColHeader width="2%" id={"6"}></Table.ColHeader>
-              <Table.ColHeader width="20%" id={"4"}>
-                organizer
-              </Table.ColHeader>
-              <Table.ColHeader width="20%" id={"1"}>
-                name
-              </Table.ColHeader>
-              <Table.ColHeader width="20%" id={"2"}>
-                location
-              </Table.ColHeader>
-              <Table.ColHeader width="20%" id={"3"}>
-                time
-              </Table.ColHeader>
-              <Table.ColHeader width="20%" id={"5"}>
-                link
-              </Table.ColHeader>
-            </Table.Row>
-          </Table.Head>
-          <Table.Body>
+    <div css={homeContainer} aria-label="home-container">
+      <Grid>
+        <Grid.Row>
+          <div css={filters}>
+            <InstUISettingsProvider
+              theme={{ typography: { fontFamily: "Ubuntu" } }}
+            >
+              <h1>FILTERS</h1>
+              <div css={filter}>
+                <CheckboxGroup
+                  name="event type"
+                  defaultValue={["BAR", "SAUNA", "CLUBPARTY", "PRIDE"]}
+                  onChange={props.filterEventsByVenueType}
+                  description="select event type"
+                >
+                  {props.eventTypeOptions.map((option, index) => (
+                    <Checkbox
+                      label={option.name}
+                      id={`opt-${index}`}
+                      value={option.value}
+                      key={option.name}
+                    />
+                  ))}
+                </CheckboxGroup>
+              </div>
+              <div css={filter}>
+                <SimpleSelect
+                  renderLabel="select date for event"
+                  width="200px"
+                  onChange={props.filterEventsByDate}
+                  defaultValue="ANY TIME"
+                  themeOverride={{
+                    fontFamily: "Fira Sans",
+                  }}
+                >
+                  {props.eventDateOptions.map((option, index) => (
+                    <SimpleSelect.Option
+                      key={index}
+                      id={`opt-${index}`}
+                      value={option.value}
+                    >
+                      {option.name}
+                    </SimpleSelect.Option>
+                  ))}
+                </SimpleSelect>
+              </div>
+            </InstUISettingsProvider>
+          </div>
+          <Grid.Col>
+            <h1 css={heading}>UPCOMING EVENTS</h1>
             {props.filteredEventData.map((event) => (
-              <Table.Row key={Math.random()}>
-                <Table.Cell key={event.id + event.url + event.id}>
-                  {event.venue.logoURL ? (
-                    <img
-                      className="venue-logo-mobile"
-                      src={event.venue.logoURL}
-                      alt="Logo"
-                      style={{
-                        width: "40px", // Set a fixed width
-                        height: "auto", // Maintain aspect ratio
-                        objectFit: "contain", // Ensure the image fits within the box
-                      }}
-                    />
-                  ) : (
-                    <div
-                      style={{
-                        width: "40px", // Same width as the image
-                        height: "auto", // Set a fixed height (adjust as needed)
-                        backgroundColor: "#f0f0f0", // Optional: Placeholder background color
-                      }}
-                    />
-                  )}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.url + event.id}>
-                  {event.venue.name}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.name}>
-                  {event.name}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.location}>
-                  {event.location}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.time}>
-                  {new Date(event.time * 1000).toLocaleString()}
-                </Table.Cell>
-                <Table.Cell key={event.id + event.url + event.id}>
-                  <a href={event.url} target="_blank" rel="noopener noreferrer">
-                    Facebook event
-                  </a>
-                </Table.Cell>
-              </Table.Row>
+              <Card css={accordionDesktop}>
+                <Grid>
+                  <GridRow>
+                    <Grid.Col width={"medium"}>
+                      <span className="header-info" css={eventImage}>
+                        <img
+                          className="venue-logo-mobile"
+                          src={event.venue.logoURL}
+                          alt="Logo"
+                          style={{
+                            width: "100px",
+                            height: "auto",
+                            objectFit: "contain",
+                          }}
+                        />
+                      </span>
+                    </Grid.Col>
+                    <Grid.Col>
+                      <ListGroup css={listGroup} variant="flush">
+                        <ListGroup.Item>
+                          <span>
+                            <NameIcon />
+                          </span>
+                          <div css={cardText}>{event.name}</div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <span>
+                            <FacebookEventIcon />
+                          </span>
+                          <span>{props.formatDate(event)}</span>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <span>
+                            <TimeIcon />
+                          </span>
+                          <div>{props.formatTime(event)}</div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <span>
+                            <FacebookEventIcon />
+                          </span>
+                          <a href={event.url}>Facebook event</a>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <span>
+                            <LocationIcon />
+                          </span>
+                          <div>{event.location}</div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <span>
+                            <OrganizerIcon />
+                          </span>
+                          <a href={" "}>{event.venue.name}</a>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <span>
+                            <TypeIcon />
+                          </span>
+                          <span>{event.eventTypes} event</span>
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Grid.Col>
+                  </GridRow>
+                </Grid>
+              </Card>
             ))}
-          </Table.Body>
-        </Table>
-      </div>
+          </Grid.Col>
+        </Grid.Row>
+      </Grid>
     </div>
   );
 };

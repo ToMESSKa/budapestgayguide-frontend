@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "../../styles/Tiles.css";
 import GoogleRating from "../GoogleRating";
 import { TailSpin } from "react-loader-spinner";
 import VenueMobile from "./Venue/VenueMobile";
