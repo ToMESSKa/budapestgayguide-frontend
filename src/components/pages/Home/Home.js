@@ -174,8 +174,16 @@ const Home = (props) => {
   return (
     <div>
       {loading ? (
-        <div css={loaderContainer}>
-          <TailSpin color="red"/>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
+          color: "green",
+        }}>
+          <TailSpin
+          />
         </div>
       ) : props.isTabletOrMobile ? (
         <HomeMobile
