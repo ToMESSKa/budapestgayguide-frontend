@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "./navigation/Header";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getUserInfo } from "../api/GetUserInfo";

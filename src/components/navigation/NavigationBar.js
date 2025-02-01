@@ -1,7 +1,9 @@
-import "../styles/NavigationBar.css";
+//import "../styles/NavigationBar.css";
 import React, { useState, useEffect } from "react";
-import CustomLink from "./CustomLink";
+//import CustomLink from "./CustomLink";
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
+import { navigation } from "./styles";
 
 function NavigationBar() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -14,14 +16,13 @@ function NavigationBar() {
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
 
   return (
-    <nav className="nav">
+    <nav>
       <ul>
-        <CustomLink to="/">Home</CustomLink>
-        <CustomLink to="/saunas">Saunas</CustomLink>
-        <CustomLink to="/bars">Bars</CustomLink>
-        <CustomLink to="/clubsandparties">Clubs & Parties</CustomLink>
-        <CustomLink to="/budapestpride">Budapest Pride</CustomLink>
-        {/* <CustomLink to="/signin">Sign In</CustomLink> */}
+        <Link to="/">Home</Link>
+        <Link to="/saunas">Saunas</Link>
+        <Link to="/bars">Bars</Link>
+        <Link to="/clubsandparties">Clubs & Parties</Link>
+        <Link to="/budapestpride">Budapest Pride</Link>
       </ul>
     </nav>
   );

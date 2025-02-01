@@ -17,11 +17,16 @@ import {
   accordion,
   accordionSummary,
   cardBody,
+  filter,
+  mobileNavigationTitle
 } from "./styles";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import HeaderTitle from "../../navigation/HeaderTitle";
+import MobileNavigation from "../../navigation/MobileNavigation";
 
 
 const HomeMobile = (props) => {
@@ -198,8 +203,8 @@ const HomeMobile = (props) => {
   };
 
   return (
-    <div className="custom-bootstrap-scope">
-      <div className="mobilefiters">
+    <div>
+      <div css={filter}>
         <Grid>
           <Grid.Row>
             <Grid.Col width={5}>
@@ -239,7 +244,7 @@ const HomeMobile = (props) => {
             </Grid.Col>
           </Grid.Row>
         </Grid>
-      </div>
+        </div>
       {props.filteredEventData.map((event) => (
         <Accordion css={accordion}>
           <AccordionSummary

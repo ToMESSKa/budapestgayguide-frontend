@@ -1,12 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import '@fontsource/ubuntu'; // Install via npm: npm install @fontsource/ubuntu
+
 
 
 export const card = css`
   border-radius: 8px;
   background-color: #fff;
   padding-top: 0px;
+`;
+
+export const loaderContainer = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  width: 100vw;
+  color: 'red;
 `;
 
 export const accordion = css`
@@ -20,7 +31,7 @@ export const accordionDesktop = css`
 `;
 
 export const filter = css`
-  margin: 30px;
+  margin: 30px 30px 30px 30px; 
 `;
 
 export const filters = css`
@@ -31,7 +42,7 @@ export const filters = css`
 
 export const homeContainer = css`
   margin: 20px;
-  font-family: 'Ubuntu';
+  font-family: 'Ubuntu', sans-serif;
  
 `;
 

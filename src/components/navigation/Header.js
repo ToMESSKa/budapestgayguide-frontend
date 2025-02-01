@@ -1,19 +1,19 @@
-import "../styles/NavigationBar.css";
+//import "../styles/NavigationBar.css";
 import React, { useState, useEffect } from "react";
 import HeaderTitle from "./HeaderTitle";
 import NavigationBar from "./NavigationBar";
-import Saunas from "./pages/Saunas";
-import Bars from "./pages/Bars";
-import Home from "./pages/Home/Home";
+import Saunas from "../pages/Saunas";
+import Bars from "../pages/Bars";
+import Home from "../pages/Home/Home";
 import { Route, Routes } from "react-router-dom";
-import SignIn from "./pages/SignIn";
-import { getUserInfo } from "../api/GetUserInfo";
+import SignIn from "../pages/SignIn";
+import { getUserInfo } from "../../api/GetUserInfo";
 import { useMediaQuery } from "react-responsive";
-import BudapestPride from "./pages/BudapestPride/BudapestPride";
+import BudapestPride from "../pages/BudapestPride/BudapestPride";
 
-import MobileHeader from "./MobileHeader";
+import MobileNavigation from "./MobileNavigation";
 
-import ClubsAndParties from "./pages/ClubsAndParties";
+import ClubsAndParties from "../pages/ClubsAndParties";
 
 function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -36,11 +36,10 @@ function Header() {
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
 
   return (
-    <div className="Header">
-      <header className="Header-header">
+    <div >
         {isTabletOrMobile ? (
           <div>
-            <MobileHeader></MobileHeader>
+            <MobileNavigation></MobileNavigation>
           </div>
         ) : (
           <div>
@@ -74,7 +73,6 @@ function Header() {
             element={<BudapestPride isLogin={isLogin} setIsLogin={setIsLogin} />}
           ></Route>
         </Routes>
-      </header>
     </div>
   );
 }

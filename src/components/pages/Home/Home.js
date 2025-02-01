@@ -1,8 +1,11 @@
+/** @jsxImportSource @emotion/react */
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { TailSpin } from "react-loader-spinner";
 import HomeDesktop from "./HomeDesktop";
 import HomeMobile from "./HomeMobile";
+
+import { loaderContainer } from "./styles";
 
 const Home = (props) => {
   const { DateTime, Interval } = require("luxon");
@@ -171,7 +174,9 @@ const Home = (props) => {
   return (
     <div>
       {loading ? (
-        <TailSpin wrapperClass="tail-spin" color="red" />
+        <div css={loaderContainer}>
+          <TailSpin color="red"/>
+        </div>
       ) : props.isTabletOrMobile ? (
         <HomeMobile
           filterEventsByDate={filterEventsByDate}
