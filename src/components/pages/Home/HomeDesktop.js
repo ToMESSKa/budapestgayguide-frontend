@@ -48,6 +48,23 @@ import ListGroup from "react-bootstrap/ListGroup";
 import {Tooltip, IconButton} from '@mui/material';
 
 const HomeDesktop = (props) => {
+
+  const createJumpLink = (venue) => {
+    switch (venue.venueType) {
+      case "BAR":
+        return "./bars"
+      case "CLUB":
+        return "./clubsandparties"
+      case "PARTY":
+        return "./clubsandparties"
+      case "SAUNA":
+        return "./saunas"
+      case "PRIDE":
+        return "./budapestpride"
+      default:
+        return null;
+    }
+  };
   return (
     <div css={homeContainer} aria-label="home-container">
       <Grid>
@@ -153,7 +170,7 @@ const HomeDesktop = (props) => {
                           <span>
                             <OrganizerIcon />
                           </span>
-                          <a href={" "}>{event.venue.name}</a>
+                          <a href={createJumpLink(event.venue)}>{event.venue.name}</a>
                         </ListGroup.Item>
                         <ListGroup.Item>
                           <span>
