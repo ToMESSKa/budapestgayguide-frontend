@@ -6,12 +6,79 @@ export const card = css`
   border-radius: 8px;
   background-color: #fff;
   padding-top: 0px;
-
 `;
 
 export const accordion = css`
   margin: 10px 10px 10px 10px !important;
 `;
+
+export const cardDesktop = {
+  display: "flex",
+  flexDirection: "column", 
+  height: "100%", 
+  width: "50%", 
+  margin: "auto auto 2rem auto",
+}
+
+export const eventImageDesktop = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  margin: "10px",
+};
+
+
+export const listGroupDesktop = {
+  width: "100%",
+  textAlign: "left",
+  overflow: "hidden",
+  whiteSpace: "normal",
+  padding: "2%",
+};
+
+export const listGroupItemDesktop = {
+  fontSize: "1rem",
+  display: "flex",
+  marginRight: '2rem',
+  marginBottom: '0.125rem',
+  maxWidth: "100%",
+  wordWrap: "break-word",
+  overflowWrap: "break-word",
+  gap: '0.5rem'
+};
+
+export const iconDesktop = {
+  display: "inline-flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
+export const cardTitleDesktop = {
+  fontSize: "1.25rem",
+  fontWeight: "bold"
+};
+
+export const linkDesktop = {
+    textDecoration: "none",
+    color: "#007bff",
+    display: "flex", 
+    alignItems: "center"
+};
+
+export const listGroupForEventsDesktop = {
+    width: "100%",
+    textAlign: "left",
+    overflow: "hidden",
+    whiteSpace: "normal",
+    marginBottom: "10px",
+    borderBottom: "2px solid rgba(0, 0, 0, 0.2)",
+    padding: "5px",
+};
+
+export const eventsAccordion = {
+  maxWidth: "90%",
+  padding: '1rem'
+};
 
 
 export const cardText = css`

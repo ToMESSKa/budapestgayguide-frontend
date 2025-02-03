@@ -7,6 +7,7 @@ import { card, listGroup, cardText, cardTitle } from "./styles";
 
 import ListGroup from "react-bootstrap/ListGroup";
 import ErrorBoundary from "../ErrorBoundary";
+import Spinner from "../../Spinner";
 
 const BudapestPride = ({ isTabletOrMobile }) => {
   useEffect(() => {
@@ -126,7 +127,7 @@ const BudapestPride = ({ isTabletOrMobile }) => {
   return (
     <div className="budapest-pride">
       {loading ? (
-        <TailSpin wrapperClass="tail-spin" color="red" />
+        <Spinner/>
       ) : isTabletOrMobile ? (
         <div>NO</div>
       ) : (

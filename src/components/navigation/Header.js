@@ -1,7 +1,7 @@
 //import "../styles/NavigationBar.css";
 import React, { useState, useEffect } from "react";
 import HeaderTitle from "./HeaderTitle";
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "./DesktopNavigation.js";
 import Saunas from "../pages/Saunas";
 import Bars from "../pages/Bars";
 import Home from "../pages/Home/Home";
@@ -10,10 +10,18 @@ import SignIn from "../pages/SignIn";
 import { getUserInfo } from "../../api/GetUserInfo";
 import { useMediaQuery } from "react-responsive";
 import BudapestPride from "../pages/BudapestPride/BudapestPride";
+import {
+  mobileHeaderTitle,
+  desktopHeaderTitle,
+  hamburgerMenu,
+  navlink,
+  mobileNavigationTitle,
+} from "./styles";
 
 import MobileNavigation from "./MobileNavigation";
 
 import ClubsAndParties from "../pages/ClubsAndParties";
+import DesktopNavigation from "./DesktopNavigation.js";
 
 function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -36,43 +44,44 @@ function Header() {
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
 
   return (
-    <div >
-        {isTabletOrMobile ? (
-          <div>
-            <MobileNavigation></MobileNavigation>
-          </div>
-        ) : (
-          <div>
-            <HeaderTitle></HeaderTitle>
-            <NavigationBar></NavigationBar>
-          </div>
-        )}
-        <Routes>
-          <Route
-            path="/"
-            element={<Home isTabletOrMobile={isTabletOrMobile} />}
-          ></Route>
-          <Route
-            path="/saunas"
-            element={<Saunas isTabletOrMobile={isTabletOrMobile} />}
-          ></Route>
-          <Route
-            path="/clubsandparties"
-            element={<ClubsAndParties isTabletOrMobile={isTabletOrMobile} />}
-          ></Route>
-          <Route
-            path="/bars"
-            element={<Bars isTabletOrMobile={isTabletOrMobile} />}
-          ></Route>
-          <Route
-            path="/signin"
-            element={<SignIn isLogin={isLogin} setIsLogin={setIsLogin} />}
-          ></Route>
-          <Route
-            path="/budapestpride"
-            element={<BudapestPride isLogin={isLogin} setIsLogin={setIsLogin} />}
-          ></Route>
-        </Routes>
+    <div>
+      {isTabletOrMobile ? (
+        <div>
+          <MobileNavigation></MobileNavigation>
+          <HeaderTitle style={mobileHeaderTitle}></HeaderTitle>
+        </div>
+      ) : (
+        <div>
+          <HeaderTitle style={desktopHeaderTitle}></HeaderTitle>
+          <DesktopNavigation></DesktopNavigation>
+        </div>
+      )}
+      <Routes>
+        <Route
+          path="/"
+          element={<Home isTabletOrMobile={isTabletOrMobile} />}
+        ></Route>
+        <Route
+          path="/saunas"
+          element={<Saunas isTabletOrMobile={isTabletOrMobile} />}
+        ></Route>
+        <Route
+          path="/clubsandparties"
+          element={<ClubsAndParties isTabletOrMobile={isTabletOrMobile} />}
+        ></Route>
+        <Route
+          path="/bars"
+          element={<Bars isTabletOrMobile={isTabletOrMobile} />}
+        ></Route>
+        <Route
+          path="/signin"
+          element={<SignIn isLogin={isLogin} setIsLogin={setIsLogin} />}
+        ></Route>
+        <Route
+          path="/budapestpride"
+          element={<BudapestPride isLogin={isLogin} setIsLogin={setIsLogin} />}
+        ></Route>
+      </Routes>
     </div>
   );
 }

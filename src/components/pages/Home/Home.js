@@ -6,6 +6,7 @@ import HomeDesktop from "./HomeDesktop";
 import HomeMobile from "./HomeMobile";
 
 import { loaderContainer } from "./styles";
+import Spinner from "../../Spinner";
 
 const Home = (props) => {
   const { DateTime, Interval } = require("luxon");
@@ -174,17 +175,7 @@ const Home = (props) => {
   return (
     <div>
       {loading ? (
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          width: "100vw",
-          color: "green",
-        }}>
-          <TailSpin
-          />
-        </div>
+        <Spinner/>
       ) : props.isTabletOrMobile ? (
         <HomeMobile
           filterEventsByDate={filterEventsByDate}

@@ -6,6 +6,7 @@ import VenueMobile from "./Venue/VenueMobile";
 import VenueDesktop from "./Venue/VenueDesktop";
 
 import { useLocation } from "react-router-dom";
+import Spinner from "../Spinner";
 
 function ClubsAndParties({ isTabletOrMobile }) {
   useEffect(() => {
@@ -38,7 +39,7 @@ function ClubsAndParties({ isTabletOrMobile }) {
   return (
     <div className="clubs">
       {loading ? (
-        <TailSpin wrapperClass="tail-spin" color="red" />
+        <Spinner/>
       ) : isTabletOrMobile ? (
         <VenueMobile
         title={"CLUBS & PARTIES"} 
@@ -47,7 +48,7 @@ function ClubsAndParties({ isTabletOrMobile }) {
           setVenueInfoToggles={setClubInfoToggles}
         ></VenueMobile>
       ) : (
-        <VenueDesktop venueData={clubData}></VenueDesktop>
+        <VenueDesktop title={"CLUBS & PARTIES"} venueData={clubData}></VenueDesktop>
       )}
     </div>
   );

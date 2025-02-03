@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 
-
-export const mobileNavigationTitle = {
+export const mobileHeaderTitle = {
   display: "flex",
   height: "60px",
   width: "100%",
@@ -14,12 +13,53 @@ export const mobileNavigationTitle = {
   fontSize: "1.5rem",
 };
 
-export const styles = {
+export const desktopHeaderTitle = {
+  fontSize: "2rem",
+  backgroundColor: "black",
+  color: "white",
+  padding: "1rem",
+};
+
+export const desktopNavigation = {
+  backgroundColor: "#333",
+  color: "white",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "stretch",
+  gap: "2rem",
+  padding: "0 1rem",
+};
+
+export const desktopNavigationItemList = {
+  padding: '0.5rem',
+  margin: 0,
+  listStyle: "none",
+  display: "flex",
+  gap: "1rem",
+  fontSize: "2rem",
+  alignItems: "center"
+};
+
+export const desktopNavigationLink = {
+  color: "inherit",
+  textDecoration: "none",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  padding: ".25rem",
+  fontSize: "2rem",
+};
+
+export const hoverDesktopNavigationLink = {
+  backgroundColor: "#444", // Change to your preferred hover color
+};
+
+export const hamburgerMenu = {
   bmBurgerButton: {
     position: "absolute",
     width: "35px",
     height: "30px",
-    margin:'15px'
+    margin: "15px",
   },
   bmBurgerBars: {
     background: "white",

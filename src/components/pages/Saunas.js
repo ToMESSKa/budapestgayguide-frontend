@@ -7,6 +7,7 @@ import GoogleRating from "../GoogleRating";
 import { TailSpin } from "react-loader-spinner";
 import VenueMobile from "./Venue/VenueMobile";
 import VenueDesktop from "./Venue/VenueDesktop";
+import Spinner from "../Spinner";
 
 function Saunas(props) {
   const [saunaData, setSaunaData] = useState([0]);
@@ -39,7 +40,7 @@ function Saunas(props) {
   return (
     <div className="saunas">
       {loading ? (
-        <TailSpin wrapperClass="tail-spin" color="red" />
+        <Spinner/>
       ) : props.isTabletOrMobile ? (
         <VenueMobile
         title={"SAUNAS"} 
@@ -48,7 +49,7 @@ function Saunas(props) {
           venueData={saunaData}
         ></VenueMobile>
       ) : (
-        <VenueDesktop venueData={saunaData}></VenueDesktop>
+        <VenueDesktop title={"SAUNAS"} venueData={saunaData}></VenueDesktop>
       )}
     </div>
   );

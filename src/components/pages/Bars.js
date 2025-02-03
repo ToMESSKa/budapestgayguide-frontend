@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { TailSpin } from "react-loader-spinner";
 import VenueMobile from "./Venue/VenueMobile";
 import VenueDesktop from "./Venue/VenueDesktop";
+import Spinner from "../Spinner";
 
 function Bars({ isTabletOrMobile }) {
   useEffect(() => {
@@ -34,7 +35,7 @@ function Bars({ isTabletOrMobile }) {
   return (
     <div className="bars">
       {loading ? (
-        <TailSpin wrapperClass="tail-spin" color="red" />
+        <Spinner/>
       ) : isTabletOrMobile ? (
         <VenueMobile
         title={"BARS"} 
@@ -43,7 +44,7 @@ function Bars({ isTabletOrMobile }) {
           setVenueInfoToggles={setBarInfoToggles}
         ></VenueMobile>
       ) : (
-        <VenueDesktop venueData={barData}></VenueDesktop>
+        <VenueDesktop title={"BARS"} venueData={barData}></VenueDesktop>
       )}
     </div>
   );

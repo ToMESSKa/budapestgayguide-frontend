@@ -36,6 +36,7 @@ import {
   TypeIcon,
   LocationIcon,
   OrganizerIcon,
+  InfoIcon
 } from "../../icons/Icons";
 
 import Accordion from "@mui/material/Accordion";
@@ -44,6 +45,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import ListGroup from "react-bootstrap/ListGroup";
+import {Tooltip, IconButton} from '@mui/material';
 
 const HomeDesktop = (props) => {
   return (

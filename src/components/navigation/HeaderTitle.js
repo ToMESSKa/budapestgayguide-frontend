@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 function HeaderTitle(props) {
   return (
-      <header style={props.style} className="header-title">BUDAPEST PHAG GUIDE</header>
+      <header style={props.style} className="header-title">BUDAPEST GAY GUIDE</header>
   );
 }
 
